@@ -1,7 +1,7 @@
 import warnings
-from urllib3.exceptions import InsecureRequestWarning
+from urllib3.exceptions import NotOpenSSLWarning
 
-warnings.simplefilter('ignore', category=InsecureRequestWarning)
+warnings.simplefilter('ignore', category=NotOpenSSLWarning)
 
 import openai
 import pandas as pd
@@ -9,15 +9,24 @@ import json
 import urllib.parse
 import argparse
 
-def process_order(api_key, email, order_text):
-    openai.api_key = api_key
-    prompt = f"From customer {email}, the order request is: '{order_text}'. Process this order and extract required structured data."
-    response = openai.Completion.create(engine="text-davinci-003", prompt=prompt, max_tokens=200)
-    
-    # Let's print the response content for debugging purposes
-    print("DEBUG - OpenAI API Response:", response.choices[0].text.strip())
-    
-    return response.choices[0].text.strip()
+def process_order(order, openai_key):
+    # Generating the prompt for ChatGPT
+    prompt = (f"Based on the following order request: '{order['request']}' from customer '{order['email']}', "
+              f"please provide the response in a structured JSON format with the fields: "
+              f"Customer email, Product Name, Count of Product, ManualProcessingRequired (boolean if data is unclear), "
+              f"and CustomerSupportRequired (boolean if it seems like a support request).")
+
+    # Call the OpenAI API to get a response for this prompt
+    response = call_openai_api(prompt, openai_key)
+
+    # Trying to convert the plain text response from OpenAI into JSON
+    try:
+        structured_data = json.loads(response)
+    except json.JSONDecodeError:
+        print(f"Error: Could not decode the response into JSON. Response was: {response}")
+        structured_data = {}
+
+    return structured_data
 
 def amazon_uri(product_name):
     return base_amazon_url + urllib.parse.quote(product_name)
