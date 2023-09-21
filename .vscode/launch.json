@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Python: aiBoostedOrderProcessor",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/src/aiBoostedOrderProcessor.py",
+        "args": [
+          "YOUR_OPENAI_API_KEY_HERE",
+          "${workspaceFolder}/sample_orders.xlsx"
+        ]
+      }
+    ]
+  }
+  
