@@ -9,9 +9,9 @@ import json
 import urllib.parse
 import argparse
 
-def process_order(order, openai_key):
+def process_order(openai_key, email, order_request):
     # Generating the prompt for ChatGPT
-    prompt = (f"Based on the following order request: '{order['request']}' from customer '{order['email']}', "
+    prompt = (f"Based on the following order request: '{order_request}' from customer '{email}', "
               f"please provide the response in a structured JSON format with the fields: "
               f"Customer email, Product Name, Count of Product, ManualProcessingRequired (boolean if data is unclear), "
               f"and CustomerSupportRequired (boolean if it seems like a support request).")
