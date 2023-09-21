@@ -51,17 +51,6 @@ def process_order(openai_key, email, order_request):
     
     return call_openai_api(prompt, openai_key)
 
-    # Call the OpenAI API to get a response for this prompt
-    response = call_openai_api(prompt, openai_key)
-
-    # Trying to convert the plain text response from OpenAI into JSON
-    try:
-        structured_data = json.loads(response)
-    except json.JSONDecodeError:
-        print(f"Error: Could not decode the response into JSON. Response was: {response}")
-        structured_data = {}
-
-    return structured_data
 
 def amazon_uri(product_name):
     return base_amazon_url + urllib.parse.quote(product_name)
@@ -80,9 +69,9 @@ def main():
 
     for index, row in df.iterrows():
         response = process_order(args.api_key, row['email'], row['order'])
-        print(structured_data)
         try:
             structured_data = json.loads(response)
+            print(structured_data)
             
             if not structured_data or 'ProductName' not in structured_data:
                 print(f"Unexpected response for order {row['order']} from {row['email']}: {response}")
