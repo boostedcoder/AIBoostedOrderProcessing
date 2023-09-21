@@ -42,12 +42,11 @@ def call_openai_api(prompt, openai_key):
         print(f"Error: Could not decode the response into JSON. Response was: {response_text}")
         return None
 
-
 def process_order(openai_key, email, order_request):
     # Generating the prompt for ChatGPT
-    prompt = (f"Convert the following order request from customer '{email}': '{order_request}' "
-              f"into structured JSON with fields 'Customer email', 'Product Name', 'Count of Product', "
-              f"'ManualProcessingRequired', and 'CustomerSupportRequired'.")
+    prompt = (f"Convert the order request: '{order_request}' from '{email}' into JSON. "
+              "Fields: 'Customer email', 'Product Name', 'Count of Product', "
+              "'ManualProcessingRequired', and 'CustomerSupportRequired'.")
     
     return call_openai_api(prompt, openai_key)
 
