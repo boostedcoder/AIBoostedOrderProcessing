@@ -1,3 +1,8 @@
+import warnings
+from urllib3.exceptions import InsecureRequestWarning
+
+warnings.simplefilter('ignore', category=InsecureRequestWarning)
+
 import openai
 import pandas as pd
 import json
