@@ -45,15 +45,9 @@ def call_openai_api(prompt, openai_key):
 
 def process_order(openai_key, email, order_request):
     # Generating the prompt for ChatGPT
-    prompt = (f"Based on the following order request: '{order_request}' from customer '{email}', "
-              f"extract and structure the information in a clear JSON format. "
-              f"The JSON should have the fields: "
-              f"'Customer email', 'Product Name', 'Count of Product', "
-              f"'ManualProcessingRequired' (a boolean indicating if data is unclear), "
-              f"and 'CustomerSupportRequired' (a boolean indicating if it seems like a support request). "
-              f"Example response: "
-              f"{{'Customer email': 'sample@example.com', 'Product Name': 'Headphones', "
-              f"'Count of Product': 2, 'ManualProcessingRequired': false, 'CustomerSupportRequired': false}}.")
+    prompt = (f"Convert the following order request from customer '{email}': '{order_request}' "
+              f"into structured JSON with fields 'Customer email', 'Product Name', 'Count of Product', "
+              f"'ManualProcessingRequired', and 'CustomerSupportRequired'.")
     
     return call_openai_api(prompt, openai_key)
 
@@ -85,14 +79,23 @@ def main():
     all_orders = []
 
     for index, row in df.iterrows():
-        print(f"Processing Order from Customer: {row['email']}")
-        structured_data = process_order(args.api_key, row['email'], row['order'])
-
+        response = process_order(args.api_key, row['email'], row['order'])
         print(structured_data)
-        all_orders.append(structured_data)
+        try:
+            structured_data = json.loads(response)
+            
+            if not structured_data or 'ProductName' not in structured_data:
+                print(f"Unexpected response for order {row['order']} from {row['email']}: {response}")
+                continue
+            
+            all_orders.append(structured_data)
 
-        if 'ProductName' in structured_data:
-            print(f"Amazon Search URL: {amazon_uri(structured_data['ProductName'])}")
+            if 'ProductName' in structured_data:
+                print(f"Amazon Search URL: {amazon_uri(structured_data['ProductName'])}")
+
+        except json.JSONDecodeError:
+            print(f"Error: Could not decode the response into JSON. Response was: {response}")
+            continue
 
     # Submit a ChatGPT prompt for summary report
     summary_prompt = f"Here is the summary of all orders: {json.dumps(all_orders)}. Provide a summary report."
