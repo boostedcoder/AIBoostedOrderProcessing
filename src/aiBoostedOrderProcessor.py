@@ -13,7 +13,7 @@ import requests
 def call_openai_api(prompt, openai_key):
     """
     Call the OpenAI API with a given prompt.
-    Returns the model's response as a string.
+    Returns the model's response as a dictionary.
     """
     # Define the endpoint and headers
     endpoint = "https://api.openai.com/v1/engines/davinci/completions"
@@ -35,14 +35,18 @@ def call_openai_api(prompt, openai_key):
     # Extract the model's response from the API response
     response_text = response.json()["choices"][0]["text"].strip()
 
-    return response_text
+    try:
+        # Attempt to convert the response to a dictionary
+        return json.loads(response_text)
+    except json.JSONDecodeError:
+        print(f"Error: Could not decode the response into JSON. Response was: {response_text}")
+        return None
+
 
 def process_order(openai_key, email, order_request):
     # Generating the prompt for ChatGPT
-    prompt = (f"Based on the following order request: '{order_request}' from customer '{email}', "
-              f"please provide the response in a structured JSON format with the fields: "
-              f"Customer email, Product Name, Count of Product, ManualProcessingRequired (boolean if data is unclear), "
-              f"and CustomerSupportRequired (boolean if it seems like a support request).")
+    prompt = (f"Given an order request by customer with email '{email}' for '{order}', "
+            f"please provide a structured JSON response with 'customer_email', 'product', and 'quantity' fields.")
 
     # Call the OpenAI API to get a response for this prompt
     response = call_openai_api(prompt, openai_key)
@@ -73,13 +77,7 @@ def main():
 
     for index, row in df.iterrows():
         print(f"Processing Order from Customer: {row['email']}")
-        response = process_order(args.api_key, row['email'], row['order'])
-
-        try:
-            structured_data = json.loads(response)
-        except json.JSONDecodeError:
-            print("Error: Could not decode the response into JSON.")
-            continue
+        structured_data = process_order(args.api_key, row['email'], row['order'])
 
         print(structured_data)
         all_orders.append(structured_data)
