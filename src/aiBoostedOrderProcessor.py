@@ -106,8 +106,14 @@ def main():
     # Individual customer report
     unique_emails = df['email'].unique()
     for email in unique_emails:
-        individual_orders = [order for order in all_orders if order['Customer email'] == email]
-        individual_prompt = f"Here are the orders for {email}: {json.dumps(individual_orders)}. Provide a report based on the customer's orders."
+        individual_orders = [order for order in all_orders if order['customer_email'] == email]
+        
+        individual_prompt = (
+                    f"Here are the orders for customer {email}: {json.dumps(individual_orders)}. "
+                    f"Analyze the orders and identify trends such as popular products, average order size, and frequency of orders. "
+                    f"Is the customer's spending trending upwards or downwards? "
+                    f"What are some recommendations for next steps or upsells for this customer?"
+                )        
         individual_response = call_openai_api(individual_prompt)
         print(individual_response)
 
