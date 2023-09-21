@@ -1,0 +1,12 @@
+# Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Environments
+.env
+.venv/
+venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
