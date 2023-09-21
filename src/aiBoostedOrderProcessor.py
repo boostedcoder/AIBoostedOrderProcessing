@@ -110,19 +110,26 @@ def main():
         response = process_order(row['email'], row['order'])
         try:
             structured_data = json.loads(response)
-            
-            if not structured_data or 'product_name' not in structured_data:
-                print(f"Unexpected response for order {row['order']} from {row['email']}: {response}")
-                continue
 
+            print()
+            print("----------------------------------------")
             print(f"Order Processed: {str(structured_data)}")
             
             if 'ManualProcessingRequired' in structured_data and structured_data['ManualProcessingRequired']:
                 print(f"Manual processing required for order {structured_data}")
+
+                manualRequestGuidance = f"Order {structured_data['product_name']} from {structured_data['customer_email']} requires manual processing. Provide guidance for manual processing."
+                manualRequestGuidanceResponse = call_openai_api(manualRequestGuidance)
+                print(f"Manual processing guidance: {manualRequestGuidanceResponse}")
+
                 continue
 
             if 'CustomerSupportRequired' in structured_data and structured_data['CustomerSupportRequired']:
                 print(f"Customer {structured_data['customer_email']} asked a question: {structured_data['CustomerSupportRequired']}")
+
+                customerSupportResponse = f"Customer {structured_data['customer_email']} asked a question: {structured_data['CustomerSupportRequired']}. Provide a response."
+                customerSupportResponseResponse = call_openai_api(customerSupportResponse)
+                print(f"Suggested Customer support response: {customerSupportResponseResponse}")
                 continue
 
             all_orders.append(structured_data)
@@ -144,6 +151,9 @@ def main():
     unique_emails = df['email'].unique()
     for email in unique_emails:
         individual_orders = [order for order in all_orders if order['customer_email'] == email]
+
+        if len(individual_orders) == 0:
+            continue
         
         individual_prompt = (
                     f"Here are the orders for customer {email}: {json.dumps(individual_orders)}. "
