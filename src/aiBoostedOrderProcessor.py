@@ -8,6 +8,10 @@ def process_order(api_key, email, order_text):
     openai.api_key = api_key
     prompt = f"From customer {email}, the order request is: '{order_text}'. Process this order and extract required structured data."
     response = openai.Completion.create(engine="text-davinci-003", prompt=prompt, max_tokens=200)
+    
+    # Let's print the response content for debugging purposes
+    print("DEBUG - OpenAI API Response:", response.choices[0].text.strip())
+    
     return response.choices[0].text.strip()
 
 def amazon_uri(product_name):
@@ -28,7 +32,13 @@ def main():
     for index, row in df.iterrows():
         print(f"Processing Order from Customer: {row['email']}")
         response = process_order(args.api_key, row['email'], row['order'])
-        structured_data = json.loads(response)
+
+        try:
+            structured_data = json.loads(response)
+        except json.JSONDecodeError:
+            print("Error: Could not decode the response into JSON.")
+            continue
+
         print(structured_data)
         all_orders.append(structured_data)
 
