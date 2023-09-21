@@ -45,8 +45,17 @@ def call_openai_api(prompt, openai_key):
 
 def process_order(openai_key, email, order_request):
     # Generating the prompt for ChatGPT
-    prompt = (f"Given an order request by customer with email '{email}' for '{order}', "
-            f"please provide a structured JSON response with 'customer_email', 'product', and 'quantity' fields.")
+    prompt = (f"Based on the following order request: '{order_request}' from customer '{email}', "
+              f"extract and structure the information in a clear JSON format. "
+              f"The JSON should have the fields: "
+              f"'Customer email', 'Product Name', 'Count of Product', "
+              f"'ManualProcessingRequired' (a boolean indicating if data is unclear), "
+              f"and 'CustomerSupportRequired' (a boolean indicating if it seems like a support request). "
+              f"Example response: "
+              f"{{'Customer email': 'sample@example.com', 'Product Name': 'Headphones', "
+              f"'Count of Product': 2, 'ManualProcessingRequired': false, 'CustomerSupportRequired': false}}.")
+    
+    return call_openai_api(prompt, openai_key)
 
     # Call the OpenAI API to get a response for this prompt
     response = call_openai_api(prompt, openai_key)
