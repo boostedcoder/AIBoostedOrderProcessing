@@ -8,6 +8,34 @@ import pandas as pd
 import json
 import urllib.parse
 import argparse
+import requests
+
+def call_openai_api(prompt, openai_key):
+    """
+    Call the OpenAI API with a given prompt.
+    Returns the model's response as a string.
+    """
+    # Define the endpoint and headers
+    endpoint = "https://api.openai.com/v1/engines/davinci/completions"
+    headers = {
+        "Authorization": f"Bearer {openai_key}",
+        "Content-Type": "application/json"
+    }
+
+    # Define the data payload
+    data = {
+        "prompt": prompt,
+        "max_tokens": 150  # You can adjust this as needed
+    }
+
+    # Make the API request
+    response = requests.post(endpoint, headers=headers, json=data)
+    response.raise_for_status()  # Raises an exception for HTTP errors
+
+    # Extract the model's response from the API response
+    response_text = response.json()["choices"][0]["text"].strip()
+
+    return response_text
 
 def process_order(openai_key, email, order_request):
     # Generating the prompt for ChatGPT
