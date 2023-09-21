@@ -11,7 +11,7 @@ git clone <repository-url>
 
 2. Navigate to the repository:
 ```bash
-cd orders_processor
+cd AIBoostedOrderProcessing
 ```
 
 3. Create a virtual environment:
@@ -33,9 +33,9 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-6. Run the `process_orders.py` script:
+6. Run the `aiBoostedOrderProcessor.py` script:
 ```bash
-python src/process_orders.py
+python src/aiBoostedOrderProcessor.py
 ```
 
 ## Note
