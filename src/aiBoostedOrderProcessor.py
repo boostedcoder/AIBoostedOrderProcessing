@@ -67,6 +67,34 @@ def process_order(email, order_request):
 def amazon_uri(product_name):
     return f"https://www.amazon.com/s?k={urllib.parse.quote(product_name)}"
 
+def sale_analysis(prompt):
+    function_schema = {
+            "name": "call_" + "sale_analysis",
+            "description": "",
+            "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "trend": { "type": "string", "description": "Trend of sale quantities - up, down or flat"},
+                        "average_order_size": { "type": "integer", "description": "Average order size"},
+                        "most_popular_product": { "type": "string", "description": "Most popular product"},
+                        "product_recommendations": {
+                            "type": "array",
+                            "description": "the list of other products this customer may be interested in",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "product": {
+                                        "type": "string",
+                                        "description": "name of other product"
+                                    },
+                                }
+                            }
+                        }
+                    }
+            }
+        }
+    return call_openai_function_api(prompt, "sale_analysis", function_schema)
+
 def main():
     parser = argparse.ArgumentParser(description="Process orders from Excel using OpenAI GPT API.")
     parser.add_argument("api_key", help="Your OpenAI API key")
@@ -89,6 +117,14 @@ def main():
 
             print(f"Order Processed: {str(structured_data)}")
             
+            if 'ManualProcessingRequired' in structured_data and structured_data['ManualProcessingRequired']:
+                print(f"Manual processing required for order {structured_data}")
+                continue
+
+            if 'CustomerSupportRequired' in structured_data and structured_data['CustomerSupportRequired']:
+                print(f"Customer {structured_data['customer_email']} asked a question: {structured_data['CustomerSupportRequired']}")
+                continue
+
             all_orders.append(structured_data)
 
             if 'product_name' in structured_data:
@@ -101,6 +137,7 @@ def main():
     # Submit a ChatGPT prompt for summary report
     summary_prompt = f"Here is the summary of all orders: {json.dumps(all_orders)}. Provide a summary report."
     summary_response = call_openai_api(summary_prompt)
+    print()
     print(summary_response)
 
     # Individual customer report
@@ -110,12 +147,35 @@ def main():
         
         individual_prompt = (
                     f"Here are the orders for customer {email}: {json.dumps(individual_orders)}. "
-                    f"Analyze the orders and identify trends such as popular products, average order size, and frequency of orders. "
+                    f"Analyze the orders and identify trends such as popular products, average order size, and frequency of orders."
                     f"Is the customer's spending trending upwards or downwards? "
                     f"What are some recommendations for next steps or upsells for this customer?"
                 )        
         individual_response = call_openai_api(individual_prompt)
+
+        print()
+        print("----------------------------------------") 
+        print(f"Customer {email} Order Analysis")  
         print(individual_response)
+
+        print()
+        print("----------------------------------------")
+        print("Sale Analysis")
+        # Submit a ChatGPT prompt for sale analysis
+        response = sale_analysis(individual_prompt)
+        print()
+        print(response)
+        analysis = json.loads(response)
+        if 'product_recommendations' in analysis:
+            for recommendation in analysis['product_recommendations']:
+                print(f"Amazon Referral Search URL: {amazon_uri(recommendation['product'])}")
+        if 'trend' in analysis:
+            if analysis['trend'] == 'up':
+                print("Customer's spending is trending upwards.")
+            elif analysis['trend'] == 'down':
+                print("Customer's spending is trending downwards.")
+            else:
+                print("Customer's spending is flat.")
 
 if __name__ == "__main__":
     main()
