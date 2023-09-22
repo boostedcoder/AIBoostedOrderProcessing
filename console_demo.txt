@@ -1,0 +1,265 @@
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer1@example.com', 'product_name': 'Headphones', 'quantity': 1}
+Amazon Search URL: https://www.amazon.com/s?k=Headphones
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer4@example.com', 'product_name': 'Tablet', 'quantity': 8}
+Amazon Search URL: https://www.amazon.com/s?k=Tablet
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer4@example.com', 'product_name': 'Headphones', 'quantity': 3}
+Amazon Search URL: https://www.amazon.com/s?k=Headphones
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer1@example.com', 'product_name': 'Laptop', 'quantity': 3}
+Amazon Search URL: https://www.amazon.com/s?k=Laptop
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer2@example.com', 'product_name': 'Monitor', 'quantity': 5}
+Amazon Search URL: https://www.amazon.com/s?k=Monitor
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer3@example.com', 'product_name': 'Laptop', 'quantity': 4}
+Amazon Search URL: https://www.amazon.com/s?k=Laptop
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer2@example.com', 'product_name': 'Tablet', 'quantity': 9}
+Amazon Search URL: https://www.amazon.com/s?k=Tablet
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer4@example.com', 'product_name': 'Smartwatch', 'quantity': 2}
+Amazon Search URL: https://www.amazon.com/s?k=Smartwatch
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer1@example.com', 'product_name': 'Smartwatch', 'quantity': 1}
+Amazon Search URL: https://www.amazon.com/s?k=Smartwatch
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer4@example.com', 'product_name': 'Speaker', 'quantity': 3}
+Amazon Search URL: https://www.amazon.com/s?k=Speaker
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer5', 'product_name': '', 'quantity': None, 'ManualProcessingRequired': True, 'CustomerSupportRequired': "I would like to order a bunch of something but I don't know what its called"}
+Manual processing required for order {'customer_email': 'customer5', 'product_name': '', 'quantity': None, 'ManualProcessingRequired': True, 'CustomerSupportRequired': "I would like to order a bunch of something but I don't know what its called"}
+Manual processing guidance: 1. Review the Order: Start by reviewing the details of the order placed by customer5. Ensure you understand what products or services they've ordered and all the specifics, like quantity, colour, required delivery date, etc.
+
+2. Check Inventory: After reviewing the order, check the inventory to ensure that the ordered products are available in sufficient quantity. If not, inform the customer and ask them whether they would like to proceed with the order or cancel it.
+
+3. Prepare Invoice: Create an invoice with all the necessary details like customer name, product details, quantity, price, tax, shipping and handling charges, etc.
+
+4. Confirm Payment: Reach out to the customer to confirm their method of payment. If they've not paid, guide them through the payment process. Always cross-verify the transaction to ensure the payment received matches the total amount on the invoice.
+
+5. Pack and Dispatch: Once the payment is confirmed, pack the order carefully to ensure it doesn't get damaged during transit. Properly label it with address and contact details. Hand it over to your logistics partner for dispatch.
+
+6. Provide Shipping Details: Inform the customer once the order has been dispatched and provide them with the tracking details. It would help them monitor the progress and know when to expect the order.
+
+7. Follow up: It's good to follow up with the customer to ensure the order was received and everything was satisfactory. Ask for any feedback or issues connected with the order. This will help improve your services in the future.
+
+8. Document the Process: Make sure to document every step of the manual process. This includes order details, payment confirmation, shipping details, follow-up notes and any feedback from the customer.
+
+9. Repeat: For every manual order, repeat these steps and maintain consistency in your manual processing. 
+
+Note: Always remember that manual processing should only be carried out for a select few orders that can't be automatically processed due to being complex, special or requiring additional verification. Attempt to automate order processing as much as possible to save time and eliminate human error.
+
+----------------------------------------
+Order Processed: {'customer_email': 'customer6', 'CustomerSupportRequired': 'How do make an order?'}
+Customer customer6 asked a question: How do make an order?
+Suggested Customer support response: To make an order, please follow these steps:
+
+1. Browse through our catalog or search for the specific product you're interested in.
+2. Click on the product to view more details.
+3. Choose your desired specifications (size, color, quantity, etc.) if available.
+4. Click 'Add to Cart' or 'Buy Now'.
+5. If you've chosen 'Add to Cart', you can continue shopping and add more products. Otherwise, you'll be redirected to the checkout page.
+6. At the checkout page, enter your delivery information and select your payment method.
+7. Review your order to make sure the details are correct.
+8. Confirm your order by clicking 'Place order' or similar.
+9. You should receive a confirmation email about your order details. If not, please get in touch with our customer service.
+
+If you encounter any issues or need further assistance, feel free to reach out to us.
+
+Here is a summary report:
+
+Customer1@example.com: 
+- Ordered 1 unit of headphones.
+- Ordered 3 units of laptops.
+- Ordered 1 unit of smartwatch.
+
+Customer4@example.com: 
+- Ordered 8 units of tablet.
+- Ordered 3 units of headphones.
+- Ordered 2 units of smartwatch.
+- Ordered 3 units of speaker.
+
+Customer2@example.com: 
+- Ordered 5 units of monitor.
+- Ordered 9 units of tablet.
+
+Customer3@example.com: 
+- Ordered 4 units of laptops.
+
+Product Summary:
+- A total of 4 headphones were sold.
+- A total of 17 tablets were sold.
+- A total of 7 laptops were sold.
+- A total of 5 monitors were sold.
+- A total of 3 smartwatches were sold.
+- A total of 3 speakers were sold.
+
+----------------------------------------
+Customer customer1@example.com Order Analysis
+From analyzing the provided data of orders for customer customer1@example.com we can identify several trends, insights, and recommendations, but bear in mind that those are very limited due to the small amount of data given.
+
+1.) Popular products: The ordered items include Headphones, a Laptop and a Smartwatch. The most purchased item by this specific customer is the "Laptop".
+
+2.) Average order size: This report comprises 3 orders; hence the average order size is 1.33 items per order.
+
+3.) Frequency of orders is a bit hard to determine from the provided array, given a lack of timing and date data connected with every order.
+
+As we don't have any chronological purchase data, it's challenging to determine if spending trends are upwards or downwards.
+
+Recommendations for next steps/upsells: Given the customer's interest in electronics, similar products or accessories could be potential upsells. These could include laptop accessories such as a mouse, keyboard, or laptop bag, audio accessories for the headphones, or interchangeable bands for the smartwatch. We could also suggest higher-end models or newer versions of the products they’ve already bought.
+
+Additionally, based on their past purchases which indicate a strong interest in tech, they might also be interested in other tech-related items like tablets, smartphones, or smart home accessories. Customer loyalty or reward programs could incentivize further purchases.
+
+However, to make more accurate analysis and recommendations, access to more data would be needed such as, the customer’s complete order history, order timing, price information and so on.
+
+----------------------------------------
+Sale Analysis
+
+{
+  "trend": "up",
+  "average_order_size": 1.66,
+  "most_popular_product": "Laptop",
+  "product_recommendations": [
+    {
+      "product": "Phone"
+    },
+    {
+      "product": "Speaker"
+    },
+    {
+      "product": "Tablet"
+    }
+  ]
+}
+Amazon Referral Search URL: https://www.amazon.com/s?k=Phone
+Amazon Referral Search URL: https://www.amazon.com/s?k=Speaker
+Amazon Referral Search URL: https://www.amazon.com/s?k=Tablet
+Customer's spending is trending upwards.
+
+----------------------------------------
+Customer customer4@example.com Order Analysis
+Based on the provided data, the customer placed four orders. The products ordered by the customer include a tablet, headphones, smartwatch, and speakers.
+
+Customer4@example.com’s most popular product seems to be the tablet, as they ordered it 8 times. 
+
+The average order size is 4 items. We calculate this by adding up all the quantities (8 tablets + 3 headphones + 2 smartwatches + 3 speakers = 16) and then dividing by the number of orders (16 ÷ 4 = 4). 
+
+However, we can't evaluate the exact frequency of orders without dates, or whether the customer's spending is trending upward or downward, as the available data lacks price information or specific timeframes of orders. 
+
+Next steps or upsells recommendations: 
+
+1. Bundle Offers: Since the customer buys tech products, an upsell could be to offer a bundle of a new tablet version with a case and/or tablet-specific accessories. 
+
+2. Loyalty Program: Introduce a loyalty program if not already in place, where frequent purchases can lead to rewards or discounts, encouraging the customer to continue patronizing and made more purchases.
+
+3. New Product Recommendations: Recommend similar or upgraded versions of products that they have already purchased like new models of a smartwatch, headphones, or speakers. 
+
+4. Cross-Sell: Try to cross-sell other tech-related items that complement their purchases. For instance, suggest buying a phone if they don't have one listed in their order history since all other products indicate a customer’s potential interest in tech products.
+
+In order to give more accurate recommendations and insights, more detailed customer transaction data would be needed.
+
+----------------------------------------
+Sale Analysis
+
+{
+  "trend": "up",
+  "average_order_size": 4,
+  "most_popular_product": "Tablet",
+  "product_recommendations": [
+    {
+      "product": "Phone"
+    },
+    {
+      "product": "Laptop"
+    }
+  ]
+}
+Amazon Referral Search URL: https://www.amazon.com/s?k=Phone
+Amazon Referral Search URL: https://www.amazon.com/s?k=Laptop
+Customer's spending is trending upwards.
+
+----------------------------------------
+Customer customer2@example.com Order Analysis
+From the given data, it is evident that the customer customer2@example.com has placed two orders. The analysis of the information is as follows:
+
+Popular Products: Both "Monitor" and "Tablet" are bought once by the customer. So, we cannot identify a more popular product between the two based on this data.
+
+Average Order Size: The customer orders more quantities of "Tablet" (9 units) in comparison to "Monitor" (5 units). Thus, the average order size is 7 units ((5+9)/2).
+
+Frequency of Orders: Given the data spans an unidentified period, we can't exactly tell the frequency of orders. 
+
+Regarding the customer's spending trends, we are unable to make a conclusion as we only have data on two orders without information about their timing and cost of products.
+
+Recommendations: 
+
+1. Upsell/Recommend high-end or latest versions of the products he bought, i.e., high-end monitors or tablets. 
+2. Suggest related accessories, like tablet covers or monitor stands, that could enhance his experience with the products.
+3. Implement a loyalty or rewards program to encourage future purchases.
+4. Since the customer tends to buy in multiplicity, offer a bundle package (like 'buy 3, get 10% off') in these product categories.
+5. Regularly update this customer about new technology arrivals since his purchasing behavior reflects an interest in tech products like monitors and tablets.
+
+More specific analysis and recommendations could be provided with more data points related to the customer's purchasing history and behaviors.
+
+----------------------------------------
+Sale Analysis
+
+{
+  "trend": "up",
+  "average_order_size": 7,
+  "most_popular_product": "Tablet",
+  "product_recommendations": [{"product": "Laptop"}, {"product": "Smartphone"}]
+}
+Amazon Referral Search URL: https://www.amazon.com/s?k=Laptop
+Amazon Referral Search URL: https://www.amazon.com/s?k=Smartphone
+Customer's spending is trending upwards.
+
+----------------------------------------
+Customer customer3@example.com Order Analysis
+From the provided data, we only have one order transaction for the customer with the email address "customer3@example.com". They ordered 4 laptops. 
+
+Since the given data consists of only one transaction, it's not possible to identify trends such as popular products, the average order size, or frequency of orders. There is also no basis to determine if the customer's spending is trending upwards or downwards.
+
+For recommendations, considering the customer has purchased high-end items (Laptops), it might be worthwhile to upsell or recommend related products or accessories such as laptop bags, wireless mouse, keyboard, or headphones. Offering maintenance and support packages for the laptops could also be an option. You can also promote extended warranties or protective software to ensure they get maximum value from their purchase. 
+
+However, more data over a longer time period would provide a more accurate trend analysis and recommendations.
+
+----------------------------------------
+Sale Analysis
+
+{
+  "trend": "up",
+  "average_order_size": 4,
+  "most_popular_product": "Laptop",
+  "product_recommendations": [
+    {
+      "product": "Laptop bag"
+    },
+    {
+      "product": "Mouse"
+    },
+    {
+      "product": "Keyboard"
+    },
+    {
+      "product": "Monitor"
+    }
+  ]
+}
+Amazon Referral Search URL: https://www.amazon.com/s?k=Laptop%20bag
+Amazon Referral Search URL: https://www.amazon.com/s?k=Mouse
+Amazon Referral Search URL: https://www.amazon.com/s?k=Keyboard
+Amazon Referral Search URL: https://www.amazon.com/s?k=Monitor
+Customer's spending is trending upwards.
