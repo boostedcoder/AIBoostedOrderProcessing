@@ -8,6 +8,7 @@ import argparse
 
 warnings.simplefilter('ignore', category=HTTPWarning)
 
+
 def call_openai_api(prompt):
     data = {
         "model": "gpt-4-0613",
