@@ -1,0 +1,98 @@
+{
+  "cells": [
+    {
+      "outputs": [
+        {
+          "items": [
+            {
+              "mime": "text/markdown",
+              "data": "\n\n---\n\n### Boost Code Explanation\n\nLast Updated: Tuesday, September 26, 2023 at 11:06:49 AM PDT\n\nThis code is a JSON configuration for a Python program in Visual Studio Code. It is not an algorithmic code but a configuration file for debugging Python code in Visual Studio Code. \n\nHere is a detailed explanation of each key-value pair in the JSON:\n\n- `\"version\": \"0.2.0\"`: This is the version of the configuration file format. The version 0.2.0 is used by Visual Studio Code for its launch.json debugging configuration files.\n\n- `\"configurations\"`: This is an array of configuration objects. Each object represents a different way to run or debug your program. In this case, there's only one configuration object.\n\nInside the configuration object:\n\n- `\"name\": \"Python: aiBoostedOrderProcessor\"`: This is the name of the configuration that will appear in the dropdown in the debug view. It's a user-friendly string to identify this configuration.\n\n- `\"type\": \"python\"`: This is the type of debugger to use. In this case, it's Python, so Visual Studio Code will use the Python debugger.\n\n- `\"request\": \"launch\"`: This is the request type. There are two types: \"launch\" and \"attach\". \"launch\" means that the debugger should start the program, while \"attach\" means the program is already running and the debugger should attach to it.\n\n- `\"program\": \"${workspaceFolder}/src/aiBoostedOrderProcessor.py\"`: This is the path to the program to debug. `${workspaceFolder}` is a variable that represents the root folder of your workspace. So, the Python file `aiBoostedOrderProcessor.py` in the `src` directory of your workspace will be debugged.\n\n- `\"args\": [\"YOUR_OPENAI_API_KEY_HERE\", \"${workspaceFolder}/sample_orders.xlsx\"]`: These are the command-line arguments that will be passed to the program when it's launched. In this case, the program expects two arguments: an OpenAI API key and a path to an Excel file with sample orders. `${workspaceFolder}` is a variable that represents the root folder of your workspace.\n\nFor more information, you can refer to the official Visual Studio Code documentation here: [Debugging in Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)\n\nAs for the architectural guidelines, since this is a configuration file and not a code file, it doesn't have any architectural implications. It doesn't introduce any dependencies or constraints, and it doesn't affect the structure or behavior of the application code. It's just a tool that developers can use to debug their code in Visual Studio Code."
+            }
+          ],
+          "metadata": {
+            "outputType": "explainCode",
+            "details": []
+          }
+        },
+        {
+          "items": [
+            {
+              "mime": "text/markdown",
+              "data": "\n\n---\n\n### Boost Flow Diagram\n\nLast Updated: Tuesday, September 26, 2023 at 11:07:16 AM PDT\n\n```mermaid\ngraph TD;\nstyle Start fill:#228B22, stroke:#000000, stroke-width:2px;\nstyle External fill:#FFA500, stroke:#000000, stroke-width:2px;\nstyle Process fill:#228B22, stroke:#000000, stroke-width:2px;\nstyle ErrorPath fill:#B22222, stroke:#000000, stroke-width:2px;\n\nStart-->ExternalLibrary;\nExternalLibrary-->ProcessData;\nProcessData-->ProcessOrder;\nProcessOrder-->ValidateOrder;\nValidateOrder-->CheckInventory;\nCheckInventory-->ProcessPayment;\nProcessPayment-->SendConfirmation;\nSendConfirmation-->End;\n\n```\nIn the above control flow graph, the primary path is shown in green, while the external library call is shown in orange. The control flow starts at the \"Start\" node and goes through the following steps:\n\n1. Call the external library: This step is represented by the \"ExternalLibrary\" node.\n2. Process the data: This step is represented by the \"ProcessData\" node.\n3. Process the order: This step is represented by the \"ProcessOrder\" node.\n4. Validate the order: This step is represented by the \"ValidateOrder\" node.\n5. Check inventory: This step is represented by the \"CheckInventory\" node.\n6. Process payment: This step is represented by the \"ProcessPayment\" node.\n7. Send confirmation: This step is represented by the \"SendConfirmation\" node.\n8. End: This step represents the end of the control flow.\n\nIf any error occurs during the control flow, the error path is followed, which is represented by the red-colored nodes."
+            }
+          ],
+          "metadata": {
+            "outputType": "flowDiagram",
+            "details": []
+          }
+        },
+        {
+          "items": [
+            {
+              "mime": "text/markdown",
+              "data": "\n\n---\n\n### Boost Source-Level Security Analysis\n\nLast Updated: Tuesday, September 26, 2023 at 11:07:38 AM PDT\n\n1. **Severity**: 9/10\n\n   **Line Number**: 9\n\n   **Bug Type**: Information Disclosure\n\n   **Description**: The API key is being passed as a command-line argument. This can lead to disclosure of sensitive information as command-line arguments are typically visible to other users on the system and can be logged by system monitoring tools.\n\n   **Solution**: Store sensitive information such as API keys in environment variables or secure configuration files. Refer to the OWASP guide on how to handle API keys: https://cheatsheetseries.owasp.org/cheatsheets/API_Security_Cheat_Sheet.html#protecting-api-keys\n\n\n"
+            }
+          ],
+          "metadata": {
+            "outputType": "bugAnalysisList",
+            "details": [
+              {
+                "lineNumber": 9,
+                "severity": 9,
+                "bugType": "Information Disclosure",
+                "description": "The API key is being passed as a command-line argument. This can lead to disclosure of sensitive information as command-line arguments are typically visible to other users on the system and can be logged by system monitoring tools.",
+                "solution": "Store sensitive information such as API keys in environment variables or secure configuration files. Refer to the OWASP guide on how to handle API keys: https://cheatsheetseries.owasp.org/cheatsheets/API_Security_Cheat_Sheet.html#protecting-api-keys"
+              }
+            ]
+          }
+        },
+        {
+          "items": [
+            {
+              "mime": "text/markdown",
+              "data": "\n\n---\n\n### Boost Source-Level Performance Analysis\n\nLast Updated: Tuesday, September 26, 2023 at 11:08:51 AM PDT\n\n**No bugs found**"
+            }
+          ],
+          "metadata": {
+            "outputType": "performanceList",
+            "details": {}
+          }
+        },
+        {
+          "items": [
+            {
+              "mime": "text/markdown",
+              "data": "\n\n---\n\n### Boost Source-Level Data and Privacy Compliance Analysis\n\nLast Updated: Tuesday, September 26, 2023 at 11:09:23 AM PDT\n\n1. **Severity**: 7/10\n\n   **Line Number**: 10\n\n   **Bug Type**: PCI DSS\n\n   **Description**: Sensitive data (OpenAI API Key) is being passed as a command line argument which can be intercepted and misused, leading to unauthorized access to the system.\n\n   **Solution**: Store sensitive data like API keys in a secure way, such as using environment variables or encrypted configuration files. Avoid passing sensitive data as command line arguments.\n\n\n"
+            }
+          ],
+          "metadata": {
+            "outputType": "complianceCodeList",
+            "details": [
+              {
+                "lineNumber": 10,
+                "severity": 7,
+                "bugType": "PCI DSS",
+                "description": "Sensitive data (OpenAI API Key) is being passed as a command line argument which can be intercepted and misused, leading to unauthorized access to the system.",
+                "solution": "Store sensitive data like API keys in a secure way, such as using environment variables or encrypted configuration files. Avoid passing sensitive data as command line arguments.",
+                "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+              }
+            ]
+          }
+        }
+      ],
+      "languageId": "json",
+      "id": "0",
+      "value": "{\n    \"version\": \"0.2.0\",\n    \"configurations\": [\n      {\n        \"name\": \"Python: aiBoostedOrderProcessor\",\n        \"type\": \"python\",\n        \"request\": \"launch\",\n        \"program\": \"${workspaceFolder}/src/aiBoostedOrderProcessor.py\",\n        \"args\": [\n          \"YOUR_OPENAI_API_KEY_HERE\",\n          \"${workspaceFolder}/sample_orders.xlsx\"\n        ]\n      }\n    ]\n  }\n",
+      "kind": 2,
+      "metadata": {
+        "id": 0,
+        "type": "originalCode",
+        "lineNumberBase": 0
+      }
+    }
+  ],
+  "metadata": {
+    "defaultDir": ".boost",
+    "sourceFile": "./.vscode/launch.json"
+  }
+}

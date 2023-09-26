@@ -1,13 +1,11 @@
 {
-  "dataFormatVersion": "1.5.1",
+  "dataFormatVersion": "1.5.2",
   "summary": {
     "projectName": "AIBoostedOrderProcessing",
     "summaryUrl": ".boost/AIBoostedOrderProcessing.summary.boost-notebook",
-    "filesToAnalyze": 5,
-    "filesAnalyzed": 0,
-    "issues": [
-      "No issues found"
-    ]
+    "filesToAnalyze": 9,
+    "filesAnalyzed": 9,
+    "issues": []
   },
   "sectionSummary": {
     "summary": {
@@ -18,21 +16,1485 @@
       "issueCells": 0,
       "totalCells": 0,
       "filesAnalyzed": 0
+    },
+    "explainCode": {
+      "analysisType": "explainCode",
+      "status": "completed",
+      "completedCells": 32,
+      "errorCells": 0,
+      "issueCells": 0,
+      "totalCells": 32,
+      "filesAnalyzed": 10
+    },
+    "flowDiagram": {
+      "analysisType": "flowDiagram",
+      "status": "completed",
+      "completedCells": 32,
+      "errorCells": 0,
+      "issueCells": 0,
+      "totalCells": 32,
+      "filesAnalyzed": 10
+    },
+    "bugAnalysisList": {
+      "analysisType": "bugAnalysisList",
+      "status": "completed",
+      "completedCells": 32,
+      "errorCells": 0,
+      "issueCells": 1,
+      "totalCells": 32,
+      "filesAnalyzed": 10,
+      "details": [
+        {
+          "lineNumber": 30,
+          "severity": 7,
+          "bugType": "Sensitive Data Exposure",
+          "description": "The OpenAI API key is passed as a command-line argument. This can expose the key in system logs or to other users on the same system via commands like 'ps'.",
+          "solution": "Avoid passing sensitive data like API keys as command-line arguments. Instead, use environment variables or a secure configuration file. Refer to this resource for more information: https://owasp.org/www-project-cheat-sheets/cheatsheets/Protecting_API_Keys_in_a_Client_Side_JavaScript_Web_Application.html"
+        }
+      ]
+    },
+    "bugAnalysis": {
+      "analysisType": "bugAnalysis",
+      "status": "not-started",
+      "completedCells": 0,
+      "errorCells": 0,
+      "issueCells": 0,
+      "totalCells": 1,
+      "filesAnalyzed": 1
+    },
+    "performanceList": {
+      "analysisType": "performanceList",
+      "status": "completed",
+      "completedCells": 32,
+      "errorCells": 0,
+      "issueCells": 0,
+      "totalCells": 32,
+      "filesAnalyzed": 10
+    },
+    "performance": {
+      "analysisType": "performance",
+      "status": "not-started",
+      "completedCells": 0,
+      "errorCells": 0,
+      "issueCells": 0,
+      "totalCells": 2,
+      "filesAnalyzed": 1
+    },
+    "complianceCodeList": {
+      "analysisType": "complianceCodeList",
+      "status": "incomplete",
+      "completedCells": 30,
+      "errorCells": 2,
+      "issueCells": 0,
+      "totalCells": 32,
+      "filesAnalyzed": 10
+    },
+    "complianceCode": {
+      "analysisType": "complianceCode",
+      "status": "not-started",
+      "completedCells": 0,
+      "errorCells": 0,
+      "issueCells": 0,
+      "totalCells": 3,
+      "filesAnalyzed": 1
     }
   },
-  "files": {},
+  "files": {
+    "src/aiBoostedOrderProcessor.py": {
+      "sourceRelFile": "./src/aiBoostedOrderProcessor.py",
+      "notebookRelFile": ".boost/src/aiBoostedOrderProcessor.py.boost-notebook",
+      "totalCells": 21,
+      "completedCells": 21,
+      "errorCells": 0,
+      "issueCells": 15,
+      "sections": {
+        "explainCode": {
+          "analysisType": "explainCode",
+          "status": "completed",
+          "completedCells": 21,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 21,
+          "filesAnalyzed": 1
+        },
+        "flowDiagram": {
+          "analysisType": "flowDiagram",
+          "status": "completed",
+          "completedCells": 21,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 21,
+          "filesAnalyzed": 1
+        },
+        "bugAnalysisList": {
+          "analysisType": "bugAnalysisList",
+          "status": "completed",
+          "completedCells": 21,
+          "errorCells": 0,
+          "issueCells": 12,
+          "totalCells": 21,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 1,
+              "severity": 2,
+              "bugType": "Insecure Direct Object References (IDOR)",
+              "description": "The 'warnings' module is used to suppress HTTP warnings. This can lead to ignoring potential security warnings such as unverified HTTPS requests, which can lead to Man-in-the-Middle (MITM) attacks.",
+              "solution": "Instead of ignoring HTTP warnings, handle them appropriately to ensure secure connections. Use 'requests' library with SSL verification. More info: https://requests.readthedocs.io/en/latest/user/advanced/#ssl-cert-verification"
+            },
+            {
+              "lineNumber": 3,
+              "severity": 3,
+              "bugType": "Sensitive Data Exposure",
+              "description": "The 'openai' module is used which could potentially expose sensitive data if not handled properly. If API keys are used and not stored securely, it could lead to unauthorized access.",
+              "solution": "Store sensitive data such as API keys securely using environment variables or secure key management systems. More info: https://www.owasp.org/index.php/Top_10-2017_A3-Sensitive_Data_Exposure"
+            },
+            {
+              "lineNumber": 6,
+              "severity": 2,
+              "bugType": "Cross-Site Scripting (XSS)",
+              "description": "The 'argparse' module is used which can be prone to Cross-Site Scripting (XSS) if user input is not validated and sanitized properly.",
+              "solution": "Always validate and sanitize user input to prevent XSS attacks. More info: https://www.owasp.org/index.php/Top_10-2017_A7-Cross-Site_Scripting_(XSS)"
+            },
+            {
+              "lineNumber": 15,
+              "severity": 4,
+              "bugType": "Insecure Direct Object References (IDOR)",
+              "description": "The 'prompt' is directly passed to the 'call_openai_api' function without any validation. This can lead to potential security vulnerabilities if the prompt contains malicious input.",
+              "solution": "Always validate and sanitize input data before using it. More info: https://www.owasp.org/index.php/Top_10-2017_A1-Injection"
+            },
+            {
+              "lineNumber": 45,
+              "severity": 7,
+              "bugType": "Insecure Direct Object References (IDOR)",
+              "description": "The function 'process_order' takes an 'email' and 'order_request' as parameters and directly converts them into a JSON object. If the 'email' and 'order_request' parameters are user-controlled inputs, this could lead to Insecure Direct Object References (IDOR) vulnerability. An attacker could manipulate these inputs to access unauthorized data.",
+              "solution": "To mitigate this, ensure that the user is authorized to access the data they are requesting. Implement access control checks to verify the user's permissions before processing the request. More about IDOR can be found here: https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control"
+            },
+            {
+              "lineNumber": 44,
+              "severity": 5,
+              "bugType": "Improper Error Handling",
+              "description": "The function 'ChatCompletion.create' is called without any error handling mechanism. If the function fails for any reason (API down, invalid parameters, etc.), the application might crash or expose sensitive information through error messages.",
+              "solution": "Wrap the function call in a try-catch block and handle potential exceptions gracefully. Do not reveal sensitive information in error messages. More about this can be found here: https://owasp.org/www-project-top-ten/2017/A10_2017-Insufficient_Logging_Monitoring"
+            },
+            {
+              "lineNumber": 68,
+              "severity": 6,
+              "bugType": "Insecure Direct Object References (IDOR)",
+              "description": "The function 'amazon_uri' takes a product name as input and directly includes it in a URL. If the product name is user-supplied data, this could lead to Insecure Direct Object References (IDOR) where an attacker can manipulate the reference to access unauthorized data.",
+              "solution": "To prevent this, ensure that the user is authorized to access the referenced object before including it in the URL. Consider using indirect object references where the submitted value is mapped to the actual object ID server-side. Learn more about IDOR here: https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control"
+            },
+            {
+              "lineNumber": 102,
+              "severity": 7,
+              "bugType": "Insecure Direct Object References (IDOR)",
+              "description": "The code directly uses user input to load an Excel file. This can lead to unauthorized access to files on the server if an attacker can manipulate the 'excel_path' argument.",
+              "solution": "Validate and sanitize user input before using it. Consider using a whitelist of allowed paths. More details can be found here: https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A5-Broken_Access_Control"
+            },
+            {
+              "lineNumber": 106,
+              "severity": 8,
+              "bugType": "Sensitive Data Exposure",
+              "description": "The OpenAI API key is being set directly from user input without any validation. If an attacker can manipulate the 'api_key' argument, they could potentially use it for malicious purposes.",
+              "solution": "Never accept API keys directly from user input. Instead, use secure methods like environment variables or secure server storage. More details can be found here: https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A3-Sensitive_Data_Exposure"
+            },
+            {
+              "lineNumber": 112,
+              "severity": 5,
+              "bugType": "Improper Error Handling",
+              "description": "The code does not handle the exception that could be raised when the 'json.loads(response)' function fails. This could lead to unexpected crashes and could potentially reveal sensitive information about the system to an attacker.",
+              "solution": "Always handle exceptions and avoid revealing sensitive system information in error messages. More details can be found here: https://owasp.org/www-community/Improper_Error_Handling"
+            },
+            {
+              "lineNumber": 120,
+              "severity": 3,
+              "bugType": "Information Disclosure",
+              "description": "The print statement could potentially display sensitive data in an insecure environment, such as a log file that is not properly secured. This can lead to information disclosure. More about information disclosure can be found here: https://owasp.org/www-community/vulnerabilities/Information_exposure_through_query_strings_in_url",
+              "solution": "Instead of directly printing the structured_data which might contain sensitive information, consider logging the necessary information only or sanitizing the data before logging. Also, ensure log files are stored in a secure location and have proper access controls. More about secure logging can be found here: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
+            },
+            {
+              "lineNumber": 121,
+              "severity": 3,
+              "bugType": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+              "description": "The code constructs a string using user-supplied input, which can potentially lead to SQL Injection if this string is used in an SQL query. An attacker can manipulate the 'product_name' or 'customer_email' field to execute arbitrary SQL commands. More information on SQL Injection can be found here: https://owasp.org/www-community/attacks/SQL_Injection",
+              "solution": "Use parameterized queries or prepared statements to prevent SQL Injection. More information on how to prevent SQL Injection can be found here: https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+            },
+            {
+              "lineNumber": 124,
+              "severity": 7,
+              "bugType": "Information Disclosure",
+              "description": "The code is directly printing the response from the 'call_openai_api' function. If this response contains sensitive data, it could be exposed in logs or to users.",
+              "solution": "Do not print sensitive data directly. If it is necessary to log this information, ensure that it is done securely, for instance by sanitizing the data or using a secure logging system. Refer to OWASP Logging Cheat Sheet for more information: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
+            },
+            {
+              "lineNumber": 123,
+              "severity": 8,
+              "bugType": "Insecure Direct Object References (IDOR)",
+              "description": "The 'call_openai_api' function is being called with 'manualRequestGuidance' as a parameter. If this parameter is user-controllable and not properly validated before use, it could lead to Insecure Direct Object References (IDOR) vulnerability.",
+              "solution": "Ensure that user inputs are properly validated and sanitized before use. Additionally, implement access control checks to prevent unauthorized access to data. Refer to OWASP IDOR prevention Cheat Sheet for more information: https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html"
+            },
+            {
+              "lineNumber": 129,
+              "severity": 5,
+              "bugType": "Information Disclosure",
+              "description": "The code prints potentially sensitive customer data (email and support question) to the console. This could lead to information disclosure if logs are not properly secured or if they are accessible in a shared environment. More about this type of issue can be found here: https://owasp.org/www-community/attacks/Information_disclosure",
+              "solution": "Avoid logging sensitive information. If needed for debugging, make sure to anonymize or encrypt the data. Use secure logging practices and restrict access to logs. More about secure logging can be found here: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
+            },
+            {
+              "lineNumber": 134,
+              "severity": 5,
+              "bugType": "Insecure Direct Object References (IDOR)",
+              "description": "The code seems to print out the response from the 'call_openai_api' function which could potentially include sensitive information. If the response contains customer sensitive data, it could lead to information disclosure.",
+              "solution": "Avoid directly printing out responses from API calls, especially if they might contain sensitive data. If logging is necessary, consider implementing a method to sanitize or redact sensitive information. More information can be found here: https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control"
+            },
+            {
+              "lineNumber": 142,
+              "severity": 4,
+              "bugType": "Information Disclosure",
+              "description": "The error message could potentially disclose sensitive information about the system. In this case, the full response is being printed out when a JSONDecodeError occurs. If the response contains sensitive information, it could be exposed.",
+              "solution": "Instead of printing the full response, consider logging the error in a secure manner that does not expose potentially sensitive information. For example, you could print a generic error message and log the details of the error in a secure log file that is not accessible to unauthorized users. More information about secure error handling can be found here: https://owasp.org/www-community/Improper_Error_Handling"
+            },
+            {
+              "lineNumber": 155,
+              "severity": 7,
+              "bugType": "Data Exposure",
+              "description": "The code is printing out the response from the call to the OpenAI API. This could potentially expose sensitive data, such as API keys or personal user data, if the response includes such information.",
+              "solution": "Remove the print statement or ensure that the response does not contain sensitive data before printing it. Consider logging the response instead, and ensure that the logs are stored securely. More information can be found here: https://owasp.org/www-community/Top_10-2017_A3-Sensitive_Data_Exposure"
+            },
+            {
+              "lineNumber": 161,
+              "severity": 5,
+              "bugType": "Inefficient Loop",
+              "description": "The code is using a nested loop to filter orders by customer email. This is an inefficient way to filter data and could lead to performance issues if the number of orders or customers is large.",
+              "solution": "Consider using a more efficient data structure or algorithm to filter the orders. For example, you could use a dictionary with the customer email as the key and the orders as the value. More information can be found here: https://wiki.python.org/moin/TimeComplexity"
+            },
+            {
+              "lineNumber": 167,
+              "severity": 6,
+              "bugType": "Data Exposure",
+              "description": "The code is creating a string that includes the customer's email and the customer's orders. This could potentially expose sensitive data if the orders include personal user data.",
+              "solution": "Ensure that the orders do not contain sensitive data before creating the string. Consider using a secure method to share this information with the customer, such as sending it directly to the customer's email. More information can be found here: https://owasp.org/www-community/Top_10-2017_A3-Sensitive_Data_Exposure"
+            },
+            {
+              "lineNumber": 174,
+              "severity": 5,
+              "bugType": "Insecure Direct Object References (IDOR)",
+              "description": "The code is directly using user input to fetch data. If an attacker manipulates the 'individual_prompt', they could potentially access unauthorized data.",
+              "solution": "Always validate and sanitize user input. Consider using access control checks or other protection mechanisms before using user input to fetch data. Read more here: https://owasp.org/www-community/attacks/Insecure_Direct_Object_References"
+            },
+            {
+              "lineNumber": 178,
+              "severity": 6,
+              "bugType": "Improper Error Handling",
+              "description": "The code doesn't handle the case where 'response' is not a valid JSON string. If 'response' is not valid JSON, the 'json.loads(response)' will throw a ValueError which is not caught.",
+              "solution": "Always use a try/except block around code that can potentially throw exceptions. In this case, consider handling the ValueError that can be thrown by 'json.loads(response)'. Read more here: https://owasp.org/www-community/Improper_Error_Handling"
+            },
+            {
+              "lineNumber": 182,
+              "severity": 4,
+              "bugType": "Cross-site Scripting (XSS)",
+              "description": "The code is directly printing the 'product' field of 'recommendation' which could be a potential XSS attack if 'product' contains malicious script.",
+              "solution": "Always escape output to prevent potential XSS attacks. Consider using a library or function that automatically escapes output. Read more here: https://owasp.org/www-community/attacks/xss/"
+            }
+          ]
+        },
+        "performanceList": {
+          "analysisType": "performanceList",
+          "status": "completed",
+          "completedCells": 21,
+          "errorCells": 0,
+          "issueCells": 15,
+          "totalCells": 21,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 6,
+              "severity": 3,
+              "bugType": "Memory",
+              "description": "The pandas library is imported but not used in the code, which consumes unnecessary memory.",
+              "solution": "Remove the import statement for the pandas library if it's not used."
+            },
+            {
+              "lineNumber": 7,
+              "severity": 2,
+              "bugType": "Memory",
+              "description": "The json library is imported but not used in the code, which consumes unnecessary memory.",
+              "solution": "Remove the import statement for the json library if it's not used."
+            },
+            {
+              "lineNumber": 8,
+              "severity": 2,
+              "bugType": "Memory",
+              "description": "The urllib.parse library is imported but not used in the code, which consumes unnecessary memory.",
+              "solution": "Remove the import statement for the urllib.parse library if it's not used."
+            },
+            {
+              "lineNumber": 9,
+              "severity": 2,
+              "bugType": "Memory",
+              "description": "The argparse library is imported but not used in the code, which consumes unnecessary memory.",
+              "solution": "Remove the import statement for the argparse library if it's not used."
+            },
+            {
+              "lineNumber": 15,
+              "severity": 5,
+              "bugType": "CPU",
+              "description": "The function 'call_openai_api' does not perform any API calls or computations, and is therefore not very efficient.",
+              "solution": "Add functionality to the 'call_openai_api' function to make it perform an API call or computation."
+            },
+            {
+              "lineNumber": 21,
+              "severity": 5,
+              "bugType": "Network",
+              "description": "The openai.ChatCompletion.create(**data) function is a network call that could potentially be slow or fail due to network issues. If the network is slow or unavailable, this could severely impact the performance of your application.",
+              "solution": "Consider using a strategy to handle potential network issues such as retries with exponential backoff, or using a circuit breaker pattern. You could also consider caching results for common inputs to reduce the number of network calls. More info here: https://martinfowler.com/bliki/CircuitBreaker.html"
+            },
+            {
+              "lineNumber": 22,
+              "severity": 2,
+              "bugType": "Memory",
+              "description": "Accessing response.choices[0].message['content'] directly could potentially lead to a KeyError if 'content' does not exist in the message dictionary. This would not necessarily impact performance, but could lead to unexpected behavior.",
+              "solution": "Consider using the get() method to access 'content' in the message dictionary. This will return None if 'content' does not exist, instead of raising a KeyError. More info here: https://docs.python.org/3/tutorial/datastructures.html#dictionaries"
+            },
+            {
+              "lineNumber": 26,
+              "severity": 1,
+              "bugType": "CPU",
+              "description": "The use of f-string for system_instruction could be slightly slower than traditional string concatenation, especially if the strings are large. However, the impact on performance is likely to be minimal.",
+              "solution": "If performance is a major concern, consider using traditional string concatenation or the join() method for large strings. More info here: https://waymoot.org/home/python_string/"
+            },
+            {
+              "lineNumber": 28,
+              "severity": 3,
+              "bugType": "Memory",
+              "description": "The variable 'data' is defined and populated but never used. This could lead to unnecessary memory usage.",
+              "solution": "Remove or use the variable 'data'. If the data is used later in the code, consider lazy loading or only loading the data when it is needed."
+            },
+            {
+              "lineNumber": 33,
+              "severity": 2,
+              "bugType": "CPU",
+              "description": "The 'max_tokens' is set to a high value, which could lead to high CPU usage if a large amount of data is processed.",
+              "solution": "Consider reducing the 'max_tokens' value or implementing a limit on the size of the data being processed to avoid high CPU usage."
+            },
+            {
+              "lineNumber": 45,
+              "severity": 5,
+              "bugType": "Network",
+              "description": "The function is making a network request to OpenAI API every time it is called. This can lead to performance issues if the function is called frequently, as network requests are relatively slow and can be unreliable.",
+              "solution": "Consider caching the results of the API calls if the same requests are made frequently. Alternatively, you could batch multiple requests together if possible. Here is a link to OpenAI's guidelines for optimizing API usage: https://platform.openai.com/docs/guides/batching"
+            },
+            {
+              "lineNumber": 50,
+              "severity": 3,
+              "bugType": "CPU",
+              "description": "The process_order function is using string formatting to create a prompt. This is not a severe issue, but it could potentially be a performance bottleneck if the function is called with very large input strings.",
+              "solution": "Consider using a more efficient method for string concatenation, such as the join() function or a StringBuilder, especially if dealing with large strings. Here is a link to a Python optimization guide that includes string concatenation: https://docs.python.org/3/howto/optimization.html#optimizing-string-concatenation"
+            },
+            {
+              "lineNumber": 67,
+              "severity": 3,
+              "bugType": "Network",
+              "description": "The function 'call_openai_function_api' is a potential performance issue if the API response time is slow. The function is blocking, meaning it will wait for the API response before continuing, which can slow down the overall program.",
+              "solution": "Consider using asynchronous calls or a non-blocking approach when calling the API to avoid slowing down the entire program. You can use Python's asyncio library for this. More details can be found here: https://docs.python.org/3/library/asyncio-task.html#coroutines"
+            },
+            {
+              "lineNumber": 70,
+              "severity": 2,
+              "bugType": "CPU",
+              "description": "The 'quote' function from 'urllib.parse' is used to URL encode the product name. This is generally a fast operation, but if the product name is very large, it could potentially be a performance issue.",
+              "solution": "Ensure that the product name input is of reasonable size. If large inputs are expected, consider using a more efficient URL encoding library or method. More details on URL encoding can be found here: https://www.w3schools.com/tags/ref_urlencode.asp"
+            },
+            {
+              "lineNumber": 105,
+              "severity": 5,
+              "bugType": "Memory",
+              "description": "The pandas function 'read_excel' loads the entire Excel file into memory. For large files, this can consume a significant amount of memory.",
+              "solution": "Consider using a more memory-efficient way to process the Excel file, such as reading the file in chunks or using a library designed for large data, like Dask. See here for more details: https://pandas.pydata.org/pandas-docs/stable/user_guide/scale.html"
+            },
+            {
+              "lineNumber": 111,
+              "severity": 4,
+              "bugType": "CPU",
+              "description": "The function 'iterrows' is not an efficient way to iterate over a DataFrame. It can be slow for large data sets.",
+              "solution": "Consider using a vectorized operation or the 'apply' function, which can be faster. See here for more details: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html"
+            },
+            {
+              "lineNumber": 113,
+              "severity": 3,
+              "bugType": "Network",
+              "description": "The function 'process_order' is called for every row in the DataFrame, which could lead to a large number of network requests if the DataFrame is large.",
+              "solution": "Consider batching the network requests or using a library that supports asynchronous requests. See here for more details: https://docs.python-requests.org/en/master/user/advanced/#asynchronous-requests"
+            },
+            {
+              "lineNumber": 118,
+              "severity": 2,
+              "bugType": "CPU",
+              "description": "The use of 'in' operator for checking the existence of a key in a dictionary can be CPU intensive if the dictionary contains a large number of keys.",
+              "solution": "Instead of using 'in' operator, use the get() method of the dictionary. It returns the value for the given key if it exists. If it does not exist, it returns a default value. For example: if structured_data.get('ManualProcessingRequired'): print(f\"Manual processing required for order {structured_data}\")"
+            },
+            {
+              "lineNumber": 119,
+              "severity": 1,
+              "bugType": "CPU",
+              "description": "The use of print statement can be CPU intensive if it is used frequently in the code. It also impacts the readability of the code and makes debugging difficult.",
+              "solution": "Consider using a logging framework like Python's built-in logging module. This provides flexibility to configure the level of logging and also allows to log to different destinations like console, file, etc."
+            },
+            {
+              "lineNumber": 123,
+              "severity": 4,
+              "bugType": "Network",
+              "description": "The function 'call_openai_api()' may involve a network call which can be a performance bottleneck if the network latency is high. It's unclear if this function has any caching or if it's making the network call every time.",
+              "solution": "Consider implementing caching if 'call_openai_api()' is expected to return the same result for the same input. This would reduce the number of network calls and improve performance. Python has several libraries for caching like 'functools.lru_cache'. Here is a link to the Python documentation: https://docs.python.org/3/library/functools.html#functools.lru_cache"
+            },
+            {
+              "lineNumber": 124,
+              "severity": 2,
+              "bugType": "CPU",
+              "description": "The print statement can be a performance issue if it's being used in a high frequency loop. It's a blocking operation and can slow down the execution of the program.",
+              "solution": "If this print statement is inside a high frequency loop, consider removing it or only printing the necessary information. For debug logs, consider using a logging library like Python's built-in 'logging' module that can be configured to write to a file, send over the network, etc. Here is a link to the Python documentation: https://docs.python.org/3/library/logging.html"
+            },
+            {
+              "lineNumber": 128,
+              "severity": 2,
+              "bugType": "CPU",
+              "description": "The 'if' condition checks for a key in a dictionary and then accesses the key which can be inefficient. This can lead to unnecessary CPU usage if the dictionary is large.",
+              "solution": "Use the 'get' method of dictionary which is a more efficient way to retrieve values. For example, 'if structured_data.get('CustomerSupportRequired'):'"
+            },
+            {
+              "lineNumber": 129,
+              "severity": 3,
+              "bugType": "CPU",
+              "description": "The print function can be CPU intensive if it's called frequently, especially with large strings.",
+              "solution": "Consider using a logging library instead of print statements. Logging libraries are more efficient and provide more control over output format and destination."
+            },
+            {
+              "lineNumber": 132,
+              "severity": 5,
+              "bugType": "Network",
+              "description": "The call to the OpenAI API could potentially be slow or fail entirely due to network issues. This could cause the entire application to hang or crash.",
+              "solution": "Consider using async calls or a timeout to prevent the application from waiting indefinitely. Also, handle potential network errors to prevent crashes. You can find more details on handling network errors in Python here: https://docs.python.org/3/howto/urllib2.html#exceptions"
+            },
+            {
+              "lineNumber": 133,
+              "severity": 3,
+              "bugType": "CPU",
+              "description": "The use of the print statement can slow down the application, especially if it's used in a loop or to print large amounts of data.",
+              "solution": "Consider using a logger instead of print statements. Loggers are more flexible and can be configured to write to different outputs, have different severity levels, and can be turned on or off based on the configuration. You can find more details on logging in Python here: https://docs.python.org/3/library/logging.html"
+            },
+            {
+              "lineNumber": 138,
+              "severity": 2,
+              "bugType": "CPU",
+              "description": "The print statement inside the if condition can cause unnecessary CPU usage if the 'product_name' key is present in the structured_data dictionary for a large number of iterations.",
+              "solution": "Consider logging the Amazon Search URL only when necessary, or store them in a list or file for future use instead of printing them out immediately. This will reduce the CPU usage."
+            },
+            {
+              "lineNumber": 137,
+              "severity": 3,
+              "bugType": "Memory",
+              "description": "The 'all_orders' list holds all structured_data objects in memory. If the number of iterations is very large, this could lead to high memory usage.",
+              "solution": "Consider processing the structured_data objects as they come and then discarding them, or storing them in a database or writing them to a file, rather than keeping all of them in memory."
+            },
+            {
+              "lineNumber": 142,
+              "severity": 3,
+              "bugType": "CPU",
+              "description": "The print statement could potentially slow down the execution of the program, especially if it's called frequently.",
+              "solution": "Consider using a logging library instead of print statements. This can provide more control over when and where your logs are outputted, and can improve performance by only writing logs when necessary. Here is a link to the Python logging library documentation: https://docs.python.org/3/library/logging.html"
+            },
+            {
+              "lineNumber": 150,
+              "severity": 7,
+              "bugType": "CPU",
+              "description": "The code is using a list comprehension inside a for loop to filter the orders for each unique email. This results in a time complexity of O(n^2) which can significantly slow down the program for large datasets.",
+              "solution": "Use a dictionary to group the orders by email before the loop. This will reduce the time complexity to O(n)."
+            },
+            {
+              "lineNumber": 148,
+              "severity": 5,
+              "bugType": "Memory",
+              "description": "The use of the 'unique' function can lead to high memory usage if the 'df' DataFrame has a large number of rows.",
+              "solution": "Consider using a different approach to get unique emails if the DataFrame has a large number of rows. One possible solution could be using a set to keep track of unique emails as you iterate through the DataFrame."
+            },
+            {
+              "lineNumber": 147,
+              "severity": 3,
+              "bugType": "Network",
+              "description": "The 'call_openai_api' function could potentially be a performance bottleneck if it involves a network request and the network latency is high.",
+              "solution": "Consider using asynchronous requests or a batch request if the API supports it to improve the performance."
+            },
+            {
+              "lineNumber": 166,
+              "severity": 2,
+              "bugType": "CPU",
+              "description": "The 'call_openai_api' function is called inside a loop, which could lead to unnecessary CPU usage if the function is computationally expensive and the loop iterates many times.",
+              "solution": "Consider refactoring the code to minimize the number of times the function is called. If possible, try to perform any heavy computations outside of the loop. If the function needs to be called for each iteration, consider using a more efficient algorithm or approach within the function itself."
+            },
+            {
+              "lineNumber": 169,
+              "severity": 1,
+              "bugType": "CPU",
+              "description": "The 'print' function is called multiple times in a row, which could lead to unnecessary CPU usage.",
+              "solution": "Consider combining the print statements into a single statement, or using a more efficient method for outputting data."
+            },
+            {
+              "lineNumber": 175,
+              "severity": 2,
+              "bugType": "CPU",
+              "description": "The function sale_analysis is called inside a loop. If the function is CPU intensive, it can lead to performance issues.",
+              "solution": "Consider moving the function call outside the loop if possible, or optimize the function to reduce CPU usage."
+            },
+            {
+              "lineNumber": 177,
+              "severity": 3,
+              "bugType": "Memory",
+              "description": "The response from the sale_analysis function is loaded into memory as a JSON object. If the response is large, it can lead to excessive memory usage.",
+              "solution": "Consider streaming the response or processing it in chunks to reduce memory usage."
+            },
+            {
+              "lineNumber": 181,
+              "severity": 2,
+              "bugType": "Network",
+              "description": "The amazon_uri function is called inside a loop, potentially leading to multiple network requests in quick succession. This can lead to network congestion and slow response times.",
+              "solution": "Consider batching the network requests or using a more efficient method to retrieve the data."
+            }
+          ]
+        },
+        "complianceCodeList": {
+          "analysisType": "complianceCodeList",
+          "status": "completed",
+          "completedCells": 21,
+          "errorCells": 0,
+          "issueCells": 15,
+          "totalCells": 21,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 8,
+              "severity": 3,
+              "bugType": "GDPR",
+              "description": "The use of 'warnings.simplefilter('ignore', category=HTTPWarning)' could potentially suppress important warnings related to HTTP communications, which could potentially include warnings about insecure data transmissions.",
+              "solution": "Instead of ignoring HTTPWarning, handle it properly to ensure that any potential insecure data transmissions are dealt with. This could involve logging the warning and/or taking corrective action."
+            },
+            {
+              "lineNumber": 14,
+              "severity": 4,
+              "bugType": "GDPR",
+              "description": "The function 'call_openai_api' does not have any mechanism to ensure that the 'prompt' data it receives and processes is anonymized or pseudonymized, which is a requirement under GDPR when processing personal data.",
+              "solution": "Implement a mechanism to anonymize or pseudonymize the 'prompt' data before it is processed. This could involve using a hashing function, for example."
+            },
+            {
+              "lineNumber": 19,
+              "severity": 2,
+              "bugType": "GDPR",
+              "description": "The OpenAI API is being used to process data, but it's unclear if this data includes personal data. If it does, and it's not anonymized or pseudonymized before being sent to the API, this could be a GDPR violation.",
+              "solution": "Ensure any personal data is anonymized or pseudonymized before being sent to third-party APIs. If this is not possible, ensure the third-party provider is GDPR compliant and that you have a data processing agreement in place with them. See https://gdpr.eu/data-processing-agreement/ for more information."
+            },
+            {
+              "lineNumber": 23,
+              "severity": 2,
+              "bugType": "GDPR",
+              "description": "The function 'call_openai_function_api' accepts input but it's unclear if this includes personal data. If it does, and it's not anonymized or pseudonymized before being processed, this could be a GDPR violation.",
+              "solution": "Ensure any personal data is anonymized or pseudonymized before being processed. If this is not possible, ensure you have a lawful basis for processing under the GDPR. See https://gdpr.eu/what-is-gdpr/ for more information."
+            },
+            {
+              "lineNumber": 45,
+              "severity": 7,
+              "bugType": "GDPR",
+              "description": "The email parameter in the 'process_order' function could potentially be used to process personal data without explicit consent, violating GDPR compliance.",
+              "solution": "Ensure explicit user consent is obtained before processing personal data. Implement mechanisms to anonymize or pseudonymize personal data where possible.",
+              "link": "https://gdpr-info.eu/"
+            },
+            {
+              "lineNumber": 44,
+              "severity": 6,
+              "bugType": "PCI DSS",
+              "description": "The 'openai.ChatCompletion.create' function could potentially handle sensitive cardholder data without proper data protection measures, violating PCI DSS compliance.",
+              "solution": "Ensure that all sensitive cardholder data is encrypted during transmission and storage. Implement access controls to restrict who can access the cardholder data.",
+              "link": "https://www.pcisecuritystandards.org/pci_security/"
+            },
+            {
+              "lineNumber": 44,
+              "severity": 6,
+              "bugType": "HIPAA",
+              "description": "The 'openai.ChatCompletion.create' function could potentially handle protected health information (PHI) without proper safeguards, violating HIPAA compliance.",
+              "solution": "Ensure that PHI is encrypted during transmission and storage. Implement access controls to restrict who can access the PHI. Regularly audit access logs for any unauthorized access or anomalies.",
+              "link": "https://www.hhs.gov/hipaa/for-professionals/security/index.html"
+            },
+            {
+              "lineNumber": 57,
+              "severity": 6,
+              "bugType": "GDPR",
+              "description": "The 'customer_email' field is potentially storing personally identifiable information (PII). GDPR requires explicit consent from users to store and process their personal data.",
+              "solution": "Ensure that explicit consent is obtained from the user before storing their email. Implement a consent mechanism in the user interface.",
+              "webLink": "https://gdpr.eu/what-is-gdpr/"
+            },
+            {
+              "lineNumber": 61,
+              "severity": 6,
+              "bugType": "HIPAA",
+              "description": "The 'CustomerSupportRequired' field could potentially hold sensitive health information if this system is used in a healthcare context. HIPAA requires that any health-related information be stored and transmitted securely.",
+              "solution": "Ensure that any potential health-related information in the 'CustomerSupportRequired' field is encrypted and securely transmitted. Implement a secure mechanism for storing and transmitting this data.",
+              "webLink": "https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html"
+            },
+            {
+              "lineNumber": 67,
+              "severity": 3,
+              "bugType": "GDPR",
+              "description": "The method 'call_openai_function_api' may process personal data, but it's unclear without more context. If personal data is processed, it needs to be done in compliance with GDPR.",
+              "solution": "Ensure that any personal data processed by 'call_openai_function_api' is done so in compliance with GDPR. This may involve obtaining consent, anonymizing data, and/or providing a way for users to request deletion of their data.",
+              "reference": "https://gdpr-info.eu/"
+            },
+            {
+              "lineNumber": 69,
+              "severity": 2,
+              "bugType": "GDPR",
+              "description": "The method 'amazon_uri' generates a URL that includes a product name, which could potentially be personal data. However, without more context, this is speculative.",
+              "solution": "If the product name is personal data, ensure that its use complies with GDPR. This could involve anonymizing the data or obtaining user consent.",
+              "reference": "https://gdpr-info.eu/"
+            },
+            {
+              "lineNumber": 102,
+              "severity": 7,
+              "bugType": "GDPR/PCI DSS/HIPAA",
+              "description": "Sensitive data like OpenAI API key is being passed as a command line argument which can be intercepted and misused.",
+              "solution": "Use secure ways to store and retrieve sensitive data like environment variables or encrypted configuration files. Avoid passing sensitive data as command line arguments.",
+              "source": "https://cheatsheetseries.owasp.org/cheatsheets/Command_Line_Arguments_Security_Cheat_Sheet.html"
+            },
+            {
+              "lineNumber": 104,
+              "severity": 6,
+              "bugType": "GDPR/PCI DSS/HIPAA",
+              "description": "The excel file is being read without any validation or sanitization. This can lead to potential data leaks if the file contains sensitive data.",
+              "solution": "Implement input validation and sanitization for the excel file before processing it. Ensure the file does not contain any sensitive or personally identifiable information (PII).",
+              "source": "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html"
+            },
+            {
+              "lineNumber": 109,
+              "severity": 7,
+              "bugType": "GDPR/PCI DSS/HIPAA",
+              "description": "The email and order details are being processed without any encryption or anonymization. This can lead to potential data leaks.",
+              "solution": "Encrypt or anonymize sensitive data like email and order details before processing. Implement secure data handling practices.",
+              "source": "https://www.gdpreu.org/compliance/fine-structure-and-penalties/"
+            },
+            {
+              "lineNumber": 112,
+              "severity": 7,
+              "bugType": "GDPR/PCI DSS/HIPAA",
+              "description": "Processed order details are being printed to the console. This can lead to potential data leaks if the console output is logged or accessible.",
+              "solution": "Avoid printing sensitive data to the console. Implement secure logging practices that exclude sensitive data.",
+              "source": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
+            },
+            {
+              "lineNumber": 120,
+              "severity": 2,
+              "bugType": "GDPR",
+              "description": "The print statement could potentially expose sensitive data if it includes personal data. This is not compliant with GDPR's principle of data minimization.",
+              "solution": "Remove or modify the print statement to exclude personal data. If debugging is needed, consider using logging with appropriate access controls and anonymization of personal data."
+            },
+            {
+              "lineNumber": 121,
+              "severity": 6,
+              "bugType": "GDPR",
+              "description": "The code is displaying personal data (customer's email) in a log or message that might be visible to non-authorized personnel or systems. This can lead to a GDPR compliance issue as it is against the principles of 'data minimization' and 'integrity and confidentiality'.",
+              "solution": "Avoid logging PII data. If necessary, mask or anonymize the data before logging. Implement access controls for logs and ensure they are stored securely.",
+              "solutionLink": "https://gdpr-info.eu/art-5-gdpr/"
+            },
+            {
+              "lineNumber": 128,
+              "severity": 7,
+              "bugType": "GDPR",
+              "description": "The code is printing a customer's email address which is a Personally Identifiable Information (PII). This may lead to data leaks and breaches GDPR compliance.",
+              "solution": "Avoid logging or printing PII data like email addresses. If it's necessary to log such data for debugging purposes, consider anonymizing or pseudonymizing the data. Also ensure that all logs are stored securely and access is controlled."
+            },
+            {
+              "lineNumber": 128,
+              "severity": 6,
+              "bugType": "PCI DSS",
+              "description": "If the system also handles payment data, logging PII in the same system could potentially link to cardholder data, which would be a breach of PCI DSS compliance.",
+              "solution": "Ensure that no cardholder data is logged, and that PII cannot be linked to cardholder data. If necessary, separate logging systems for payment and non-payment data."
+            },
+            {
+              "lineNumber": 128,
+              "severity": 5,
+              "bugType": "HIPAA",
+              "description": "If the system also handles health information, printing or logging PII could potentially link to health information, which would be a breach of HIPAA compliance.",
+              "solution": "Ensure that no health information is logged, and that PII cannot be linked to health information. If necessary, separate logging systems for health and non-health data."
+            },
+            {
+              "lineNumber": 130,
+              "severity": 7,
+              "bugType": "GDPR",
+              "description": "The code is displaying the customer's email in a string format which could potentially be logged or displayed in an insecure manner. This is a violation of GDPR as it involves unnecessary processing of PII (Personally Identifiable Information).",
+              "solution": "Ensure that customer emails are not logged or displayed in an insecure manner. If it is necessary to log this information, ensure that the logs are protected and access is restricted. Also, consider anonymizing the data if possible."
+            },
+            {
+              "lineNumber": 133,
+              "severity": 6,
+              "bugType": "GDPR",
+              "description": "The code may be in violation of GDPR as it appears to be processing personal data (customerSupportResponse) without explicit consent or safeguards in place. This is an assumption based on the variable name.",
+              "solution": "Ensure that explicit consent is obtained from the user before processing their personal data. Also, consider implementing data anonymization techniques when processing personal data. More information on GDPR compliance can be found here: https://gdpr.eu/data-processing-agreement/"
+            },
+            {
+              "lineNumber": 134,
+              "severity": 6,
+              "bugType": "PCI DSS",
+              "description": "The code may be in violation of PCI DSS as it is displaying potentially sensitive data (customerSupportResponseResponse) in the console. This is an assumption based on the variable name.",
+              "solution": "Avoid displaying sensitive data in the console. If logging is necessary, ensure that logs are securely stored and access is restricted. More information on PCI DSS compliance can be found here: https://www.pcisecuritystandards.org/pci_security/"
+            },
+            {
+              "lineNumber": 133,
+              "severity": 6,
+              "bugType": "HIPAA",
+              "description": "The code may be in violation of HIPAA as it appears to be transmitting potentially sensitive health information (customerSupportResponse) without proper encryption or safeguards. This is an assumption based on the variable name.",
+              "solution": "Ensure that any transmission of sensitive health information is encrypted and that access to this data is restricted. More information on HIPAA compliance can be found here: https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html"
+            },
+            {
+              "lineNumber": 142,
+              "severity": 7,
+              "bugType": "GDPR",
+              "description": "The code prints out the full response when a JSON decoding error happens. This could potentially lead to the exposure of sensitive data if the response contains any personally identifiable information (PII), which is a violation of GDPR.",
+              "solution": "Instead of printing the full response, log only necessary error information. If it's necessary to log the full response, ensure that any sensitive data is properly redacted or anonymized before logging.",
+              "webLink": "https://gdpr-info.eu/art-32-gdpr/"
+            },
+            {
+              "lineNumber": 145,
+              "severity": 6,
+              "bugType": "GDPR",
+              "description": "The code is dumping all orders into a JSON string. If 'all_orders' contains personal data, it could potentially violate GDPR compliance.",
+              "solution": "Ensure that 'all_orders' does not contain any personal identifiable information (PII) or sensitive data. If it does, use anonymization or pseudonymization techniques to protect such data. Alternatively, implement access controls to restrict who can access the data.",
+              "webLink": "https://gdpr-info.eu/issues/personal-data/"
+            },
+            {
+              "lineNumber": 151,
+              "severity": 7,
+              "bugType": "GDPR",
+              "description": "The code is printing the response from an API call which could potentially contain personally identifiable information (PII), compromising GDPR compliance.",
+              "solution": "Avoid printing responses that may contain PII. If necessary for debugging, ensure logs are properly protected and regularly purged."
+            },
+            {
+              "lineNumber": 156,
+              "severity": 8,
+              "bugType": "GDPR, PCI DSS, HIPAA",
+              "description": "The code is processing and displaying individual orders based on email addresses which are considered PII under GDPR, PCI DSS, and HIPAA. There is a risk of exposing sensitive data.",
+              "solution": "Ensure that any PII is properly anonymized or pseudonymized before processing. Also, ensure that the display of such data is only accessible to authorized personnel."
+            },
+            {
+              "lineNumber": 165,
+              "severity": 6,
+              "bugType": "GDPR",
+              "description": "The code is using the customer's email to print the order analysis. This could potentially lead to a violation of GDPR as it involves processing of personally identifiable information (PII).",
+              "solution": "Anonymize or pseudonymize the email addresses when displaying them. This can be done by replacing part of the email with asterisks or any other symbol. Alternatively, use unique customer IDs instead of emails for internal references."
+            }
+          ]
+        }
+      }
+    },
+    "src/createTestOrderRequests.py": {
+      "sourceRelFile": "./src/createTestOrderRequests.py",
+      "notebookRelFile": ".boost/src/createTestOrderRequests.py.boost-notebook",
+      "totalCells": 3,
+      "completedCells": 3,
+      "errorCells": 0,
+      "issueCells": 3,
+      "sections": {
+        "explainCode": {
+          "analysisType": "explainCode",
+          "status": "completed",
+          "completedCells": 3,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 3,
+          "filesAnalyzed": 1
+        },
+        "flowDiagram": {
+          "analysisType": "flowDiagram",
+          "status": "completed",
+          "completedCells": 3,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 3,
+          "filesAnalyzed": 1
+        },
+        "bugAnalysisList": {
+          "analysisType": "bugAnalysisList",
+          "status": "completed",
+          "completedCells": 3,
+          "errorCells": 0,
+          "issueCells": 1,
+          "totalCells": 3,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 33,
+              "severity": 5,
+              "bugType": "Insecure Data Storage",
+              "description": "The code is writing potentially sensitive data (email and order information) to an Excel file without any encryption. An attacker with access to the file system could read this data.",
+              "solution": "Consider encrypting sensitive data before writing it to disk. Python provides several libraries for encryption, such as PyCrypto. Alternatively, consider using a secure database to store this data. Here is a good resource on data encryption in Python: https://www.geeksforgeeks.org/python-encrypting-text-using-caesar-shift-cipher/"
+            },
+            {
+              "lineNumber": 32,
+              "severity": 3,
+              "bugType": "Insecure Input Handling",
+              "description": "The code is appending user-provided data (email and order_text) to a list without any validation or sanitization. This could potentially lead to security issues if the input data is malicious (e.g., contains SQL injection or XSS payloads).",
+              "solution": "Always validate and sanitize user-provided data before using it. Python provides several libraries for this, such as bleach for sanitizing HTML. Here is a good resource on input validation in Python: https://realpython.com/tutorials/validation/"
+            }
+          ]
+        },
+        "performanceList": {
+          "analysisType": "performanceList",
+          "status": "completed",
+          "completedCells": 3,
+          "errorCells": 0,
+          "issueCells": 2,
+          "totalCells": 3,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 21,
+              "severity": 4,
+              "bugType": "CPU",
+              "description": "The code is using the random.choice function inside a loop. This can be inefficient if 'num_orders' is a large number.",
+              "solution": "Consider using numpy's random.choice function to generate all orders at once, which is more efficient for large numbers of orders. Refer to: https://numpy.org/doc/stable/reference/random/generated/numpy.random.choice.html"
+            },
+            {
+              "lineNumber": 22,
+              "severity": 2,
+              "bugType": "CPU",
+              "description": "The code is generating a string for each order using f-string formatting inside a loop. This can be inefficient if 'num_orders' is a large number.",
+              "solution": "Consider using a more efficient string formatting method such as ''.join() or StringBuilder in Python. Refer to: https://waymoot.org/home/python_string/"
+            },
+            {
+              "lineNumber": 32,
+              "severity": 6,
+              "bugType": "Memory",
+              "description": "Pandas DataFrame is created from a list of orders. This could potentially consume a significant amount of memory if the list of orders is very large.",
+              "solution": "Consider using a more memory-efficient data structure or method for storing and processing the orders. For example, you could use a generator to process the orders one at a time, or you could use a database to store and query the orders."
+            },
+            {
+              "lineNumber": 33,
+              "severity": 7,
+              "bugType": "Disk",
+              "description": "The entire DataFrame is written to an Excel file in one operation. This could potentially consume a significant amount of disk space and I/O if the DataFrame is very large.",
+              "solution": "Consider writing the DataFrame to the Excel file in chunks to reduce the amount of disk space and I/O required at any one time. Pandas provides the 'chunksize' parameter in the 'to_excel' method for this purpose. Alternatively, consider using a more disk-efficient file format, such as CSV or Parquet."
+            }
+          ]
+        },
+        "complianceCodeList": {
+          "analysisType": "complianceCodeList",
+          "status": "completed",
+          "completedCells": 3,
+          "errorCells": 0,
+          "issueCells": 3,
+          "totalCells": 3,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 11,
+              "severity": 6,
+              "bugType": "GDPR",
+              "description": "The code is generating customer email addresses which is considered as Personal Identifiable Information (PII). Storing and processing PII without explicit consent from the user is a violation of GDPR.",
+              "solution": "Ensure to obtain explicit consent from the user before storing and processing their PII. Also, ensure proper security measures are in place to secure the data.",
+              "webLink": "https://gdpr-info.eu/issues/consent/"
+            },
+            {
+              "lineNumber": 22,
+              "severity": 7,
+              "bugType": "GDPR",
+              "description": "The email variable potentially contains personally identifiable information (PII), and its use could violate GDPR regulations if it is not properly anonymized or encrypted.",
+              "solution": "Ensure email data is anonymized or encrypted. If this data is being stored, ensure proper consent has been obtained from the user.",
+              "webLink": "https://gdpr-info.eu/"
+            },
+            {
+              "lineNumber": 31,
+              "severity": 6,
+              "bugType": "GDPR",
+              "description": "Email addresses are considered personal data under GDPR. Storing them in a list without explicit user consent and proper security measures is a violation.",
+              "solution": "Ensure you have user consent before storing their email addresses. Also, consider encrypting the email addresses before storing and use secure methods when handling this data."
+            },
+            {
+              "lineNumber": 34,
+              "severity": 6,
+              "bugType": "GDPR, PCI DSS, HIPAA",
+              "description": "Writing personal data to an Excel file can be a risk if the file is not properly protected. This can lead to non-compliance with GDPR, PCI DSS, and HIPAA.",
+              "solution": "Encrypt the Excel file to protect the data. Also, ensure the file is stored in a secure location and access is restricted."
+            }
+          ]
+        }
+      }
+    },
+    "console_demo.txt": {
+      "sourceRelFile": "./console_demo.txt",
+      "notebookRelFile": ".boost/console_demo.txt.boost-notebook",
+      "totalCells": 1,
+      "completedCells": 1,
+      "errorCells": 0,
+      "issueCells": 1,
+      "sections": {
+        "explainCode": {
+          "analysisType": "explainCode",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "flowDiagram": {
+          "analysisType": "flowDiagram",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "bugAnalysisList": {
+          "analysisType": "bugAnalysisList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 1,
+          "totalCells": 1,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 1,
+              "severity": 8,
+              "bugType": "Information Disclosure",
+              "description": "The code logs sensitive information such as customer email and their orders. This could lead to information disclosure if the logs are not properly secured.",
+              "solution": "Avoid logging sensitive information. If it is necessary to log such information for debugging purposes, ensure the logs are properly secured and that the sensitive information is removed or anonymized as soon as it is no longer needed. Refer to OWASP Logging Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
+            },
+            {
+              "lineNumber": 1,
+              "severity": 7,
+              "bugType": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+              "description": "The code directly uses user input to generate a URL. If the user input is not properly sanitized, this could lead to a Cross-site Scripting (XSS) attack.",
+              "solution": "Sanitize user input before using it to generate a URL. You can use a library that provides URL encoding functions to ensure the input does not contain any characters that could be interpreted as code. Refer to OWASP XSS Prevention Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+            }
+          ]
+        },
+        "performanceList": {
+          "analysisType": "performanceList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "complianceCodeList": {
+          "analysisType": "complianceCodeList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 1,
+          "totalCells": 1,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 1,
+              "severity": 7,
+              "bugType": "GDPR",
+              "description": "The code logs and displays personal data (email addresses) in plain text, which is a violation of GDPR.",
+              "solution": "Personal data should be anonymized, pseudonymized, or encrypted when stored or displayed. Never log personal data in plain text. Use a secure method to store and display personal data, like hashing or encryption."
+            },
+            {
+              "lineNumber": 1,
+              "severity": 7,
+              "bugType": "PCI DSS",
+              "description": "The code may be handling payment processing as it is processing orders, but it doesn't show any evidence of secure handling or encryption of payment data, which is a violation of PCI DSS.",
+              "solution": "Ensure that any code handling payment data is doing so securely, using encryption and secure protocols. Do not log payment data in plain text. Ensure that all payment data is securely stored and transmitted."
+            },
+            {
+              "lineNumber": 1,
+              "severity": 7,
+              "bugType": "HIPAA",
+              "description": "While the code does not appear to handle any health-related data, if it were to do so in the future, it would need to ensure that all such data is encrypted and securely stored and transmitted, in compliance with HIPAA.",
+              "solution": "If the code is to handle health-related data in the future, ensure that all such data is encrypted and securely stored and transmitted. Do not log health-related data in plain text. Use a secure method to store and display health-related data, like hashing or encryption."
+            }
+          ]
+        }
+      }
+    },
+    "README.md": {
+      "sourceRelFile": "./README.md",
+      "notebookRelFile": ".boost/README.md.boost-notebook",
+      "totalCells": 1,
+      "completedCells": 1,
+      "errorCells": 1,
+      "issueCells": 1,
+      "sections": {
+        "explainCode": {
+          "analysisType": "explainCode",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "flowDiagram": {
+          "analysisType": "flowDiagram",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "bugAnalysisList": {
+          "analysisType": "bugAnalysisList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 1,
+          "totalCells": 1,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 30,
+              "severity": 7,
+              "bugType": "Sensitive Data Exposure",
+              "description": "The OpenAI API key is passed as a command-line argument. This can expose the key in system logs or to other users on the same system via commands like 'ps'.",
+              "solution": "Avoid passing sensitive data like API keys as command-line arguments. Instead, use environment variables or a secure configuration file. Refer to this resource for more information: https://owasp.org/www-project-cheat-sheets/cheatsheets/Protecting_API_Keys_in_a_Client_Side_JavaScript_Web_Application.html"
+            }
+          ]
+        },
+        "performanceList": {
+          "analysisType": "performanceList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "complianceCodeList": {
+          "analysisType": "complianceCodeList",
+          "status": "not-started",
+          "completedCells": 0,
+          "errorCells": 1,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        }
+      }
+    },
+    "CreatingTheCode-ChatGPT.url": {
+      "sourceRelFile": "./CreatingTheCode-ChatGPT.url",
+      "notebookRelFile": ".boost/CreatingTheCode-ChatGPT.url.boost-notebook",
+      "totalCells": 1,
+      "completedCells": 1,
+      "errorCells": 0,
+      "issueCells": 1,
+      "sections": {
+        "explainCode": {
+          "analysisType": "explainCode",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "flowDiagram": {
+          "analysisType": "flowDiagram",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "bugAnalysisList": {
+          "analysisType": "bugAnalysisList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 1,
+          "totalCells": 1,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 7,
+              "severity": 8,
+              "bugType": "Insecure Direct Object References (IDOR)",
+              "description": "The function 'update_user' is directly using the 'user_id' from the request to update the user. This can lead to unauthorized users being able to modify other users' data if they can guess or brute-force the 'user_id'. More about IDOR can be found here: https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control",
+              "solution": "Implement proper access control checks to ensure the user making the request has the necessary permissions to update the data. This could be done by checking if the 'user_id' in the session matches the 'user_id' in the request, or by implementing roles and permissions in your application. More about access control can be found here: https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control"
+            },
+            {
+              "lineNumber": 14,
+              "severity": 9,
+              "bugType": "SQL Injection",
+              "description": "The function 'get_user' is using string concatenation to create the SQL query. This can lead to SQL Injection if an attacker can control the 'user_id' value. More about SQL Injection can be found here: https://owasp.org/www-project-top-ten/2017/A1_2017-Injection",
+              "solution": "Use parameterized queries or prepared statements to prevent SQL Injection. This ensures that user input is always treated as literal data and not part of the SQL command. More about preventing SQL Injection can be found here: https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+            }
+          ]
+        },
+        "performanceList": {
+          "analysisType": "performanceList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 1,
+          "totalCells": 1,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 3,
+              "severity": 6,
+              "bugType": "Memory",
+              "description": "The code is creating a new instance of BufferedReader for every line of input. This can lead to excessive memory usage if the input is large.",
+              "solution": "Move the creation of the BufferedReader outside of the while loop. This way, only one instance is created and used throughout the loop. Here is a resource that might help: https://www.geeksforgeeks.org/reading-input-from-console-in-java-using-bufferedreader-class/"
+            },
+            {
+              "lineNumber": 5,
+              "severity": 7,
+              "bugType": "CPU",
+              "description": "The code is using a regular expression to split the input string into an array. This can be CPU intensive for large inputs.",
+              "solution": "Consider using a more efficient method to split the string, such as the split() method of the String class. Here is a resource that might help: https://www.geeksforgeeks.org/split-string-java-examples/"
+            },
+            {
+              "lineNumber": 7,
+              "severity": 5,
+              "bugType": "Memory",
+              "description": "The code is creating a new ArrayList for every line of input. This can lead to excessive memory usage if the input is large.",
+              "solution": "Consider reusing the same ArrayList for each line of input. Clear the list at the beginning of each loop iteration. Here is a resource that might help: https://www.geeksforgeeks.org/arraylist-in-java/"
+            },
+            {
+              "lineNumber": 9,
+              "severity": 6,
+              "bugType": "CPU",
+              "description": "The code is using a nested for loop to compare each word with every other word. This is an O(n^2) operation and can be CPU intensive for large inputs.",
+              "solution": "Consider using a more efficient data structure such as a Set to store the words. This will allow you to check for duplicates in O(1) time. Here is a resource that might help: https://www.geeksforgeeks.org/hashset-in-java/"
+            },
+            {
+              "lineNumber": 11,
+              "severity": 5,
+              "bugType": "Disk",
+              "description": "The code is writing to the disk for every word that is found to be a duplicate. This can be disk intensive for large inputs.",
+              "solution": "Consider buffering the output and writing to the disk in larger chunks. This can reduce the number of disk writes and improve performance. Here is a resource that might help: https://www.geeksforgeeks.org/bufferedwriter-class-in-java/"
+            }
+          ]
+        },
+        "complianceCodeList": {
+          "analysisType": "complianceCodeList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        }
+      }
+    },
+    "requirements.txt": {
+      "sourceRelFile": "./requirements.txt",
+      "notebookRelFile": ".boost/requirements.txt.boost-notebook",
+      "totalCells": 1,
+      "completedCells": 1,
+      "errorCells": 0,
+      "issueCells": 1,
+      "sections": {
+        "explainCode": {
+          "analysisType": "explainCode",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "flowDiagram": {
+          "analysisType": "flowDiagram",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "bugAnalysisList": {
+          "analysisType": "bugAnalysisList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 1,
+          "totalCells": 1,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 1,
+              "severity": 6,
+              "bugType": "Insecure Dependencies",
+              "description": "The code is using exact versions of dependencies, which might not include the latest security patches. This could potentially lead to the application being vulnerable to known security issues in these dependencies. For instance, if a security issue is found in 'openai==0.27.8' and it is fixed in 'openai==0.27.9', this application will not benefit from that fix because it is pinned to 'openai==0.27.8'.",
+              "solution": "It is recommended to not pin to an exact version of a dependency unless necessary. Instead, use a version range that allows for the latest security patches to be included. For example, 'openai>=0.27.8,<0.28.0' would allow any version of 'openai' that is greater than or equal to '0.27.8' and less than '0.28.0'."
+            },
+            {
+              "lineNumber": 4,
+              "severity": 5,
+              "bugType": "Insecure Dependencies",
+              "description": "The code is using a version range for 'requests' that includes potentially insecure versions. It is recommended to specify a minimum version that is known to be secure.",
+              "solution": "Specify a minimum version for 'requests' that is known to be secure. For example, 'requests>=2.26.0' would ensure that only versions of 'requests' that are '2.26.0' or higher are used, which would include the latest security patches."
+            }
+          ]
+        },
+        "performanceList": {
+          "analysisType": "performanceList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 1,
+          "totalCells": 1,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 1,
+              "severity": 1,
+              "bugType": "Disk",
+              "description": "The code is specifying a specific version of the OpenAI library. If a newer version is available, it might include performance improvements that this code won't benefit from.",
+              "solution": "Consider allowing a range of versions, or at least up to the latest version, to take advantage of any performance improvements in newer versions."
+            },
+            {
+              "lineNumber": 2,
+              "severity": 1,
+              "bugType": "Disk",
+              "description": "The code is specifying a specific version of the pandas library. If a newer version is available, it might include performance improvements that this code won't benefit from.",
+              "solution": "Consider allowing a range of versions, or at least up to the latest version, to take advantage of any performance improvements in newer versions."
+            },
+            {
+              "lineNumber": 3,
+              "severity": 1,
+              "bugType": "Disk",
+              "description": "The code is specifying a specific version of the xlrd library. If a newer version is available, it might include performance improvements that this code won't benefit from.",
+              "solution": "Consider allowing a range of versions, or at least up to the latest version, to take advantage of any performance improvements in newer versions."
+            },
+            {
+              "lineNumber": 4,
+              "severity": 1,
+              "bugType": "Disk",
+              "description": "The code is specifying a specific version of the openpyxl library. If a newer version is available, it might include performance improvements that this code won't benefit from.",
+              "solution": "Consider allowing a range of versions, or at least up to the latest version, to take advantage of any performance improvements in newer versions."
+            },
+            {
+              "lineNumber": 5,
+              "severity": 1,
+              "bugType": "Network",
+              "description": "The code is specifying a minimum version of the requests library. If a newer version is available, it might include performance improvements that this code won't benefit from.",
+              "solution": "Consider allowing a range of versions, or at least up to the latest version, to take advantage of any performance improvements in newer versions."
+            }
+          ]
+        },
+        "complianceCodeList": {
+          "analysisType": "complianceCodeList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        }
+      }
+    },
+    ".vscode/settings.json": {
+      "sourceRelFile": "./.vscode/settings.json",
+      "notebookRelFile": ".boost/.vscode/settings.json.boost-notebook",
+      "totalCells": 1,
+      "completedCells": 1,
+      "errorCells": 0,
+      "issueCells": 0,
+      "sections": {
+        "explainCode": {
+          "analysisType": "explainCode",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "flowDiagram": {
+          "analysisType": "flowDiagram",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "bugAnalysisList": {
+          "analysisType": "bugAnalysisList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "performanceList": {
+          "analysisType": "performanceList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "complianceCodeList": {
+          "analysisType": "complianceCodeList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        }
+      }
+    },
+    ".vscode/launch.json": {
+      "sourceRelFile": "./.vscode/launch.json",
+      "notebookRelFile": ".boost/.vscode/launch.json.boost-notebook",
+      "totalCells": 1,
+      "completedCells": 1,
+      "errorCells": 0,
+      "issueCells": 1,
+      "sections": {
+        "explainCode": {
+          "analysisType": "explainCode",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "flowDiagram": {
+          "analysisType": "flowDiagram",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "bugAnalysisList": {
+          "analysisType": "bugAnalysisList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 1,
+          "totalCells": 1,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 9,
+              "severity": 9,
+              "bugType": "Information Disclosure",
+              "description": "The API key is being passed as a command-line argument. This can lead to disclosure of sensitive information as command-line arguments are typically visible to other users on the system and can be logged by system monitoring tools.",
+              "solution": "Store sensitive information such as API keys in environment variables or secure configuration files. Refer to the OWASP guide on how to handle API keys: https://cheatsheetseries.owasp.org/cheatsheets/API_Security_Cheat_Sheet.html#protecting-api-keys"
+            }
+          ]
+        },
+        "performanceList": {
+          "analysisType": "performanceList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "complianceCodeList": {
+          "analysisType": "complianceCodeList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 1,
+          "totalCells": 1,
+          "filesAnalyzed": 1,
+          "details": [
+            {
+              "lineNumber": 10,
+              "severity": 7,
+              "bugType": "PCI DSS",
+              "description": "Sensitive data (OpenAI API Key) is being passed as a command line argument which can be intercepted and misused, leading to unauthorized access to the system.",
+              "solution": "Store sensitive data like API keys in a secure way, such as using environment variables or encrypted configuration files. Avoid passing sensitive data as command line arguments.",
+              "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+            }
+          ]
+        }
+      }
+    },
+    ".vscode/extensions.json": {
+      "sourceRelFile": "./.vscode/extensions.json",
+      "notebookRelFile": ".boost/.vscode/extensions.json.boost-notebook",
+      "totalCells": 1,
+      "completedCells": 1,
+      "errorCells": 0,
+      "issueCells": 0,
+      "sections": {
+        "explainCode": {
+          "analysisType": "explainCode",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "flowDiagram": {
+          "analysisType": "flowDiagram",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "bugAnalysisList": {
+          "analysisType": "bugAnalysisList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "performanceList": {
+          "analysisType": "performanceList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        },
+        "complianceCodeList": {
+          "analysisType": "complianceCodeList",
+          "status": "completed",
+          "completedCells": 1,
+          "errorCells": 0,
+          "issueCells": 0,
+          "totalCells": 1,
+          "filesAnalyzed": 1
+        }
+      }
+    }
+  },
   "account": {
-    "refreshed": false,
-    "enabled": false,
-    "status": "",
+    "refreshed": true,
+    "enabled": true,
+    "status": "paid",
     "trialRemaining": 0,
-    "usageThisMonth": 0,
-    "discountedUsage": 0,
-    "balanceDue": 0,
-    "couponType": "",
-    "org": "",
-    "owner": "",
-    "created": "",
+    "usageThisMonth": 577.42,
+    "discountedUsage": 100,
+    "balanceDue": 477.42,
+    "couponType": "Polyverse Boost Free Trial",
+    "org": "polyverse-appsec",
+    "owner": "alex@polyverse.io",
+    "created": "2023-05-06",
     "creditCardLinked": false
   },
   "uiState": {

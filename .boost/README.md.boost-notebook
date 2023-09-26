@@ -1,0 +1,89 @@
+{
+  "cells": [
+    {
+      "outputs": [
+        {
+          "items": [
+            {
+              "mime": "text/markdown",
+              "data": "\n\n---\n\n### Boost Code Explanation\n\nLast Updated: Monday, September 25, 2023 at 10:49:50 AM PDT\n\nThe provided text is not a code but a README file for a project named \"AI Boosted Order Processing\". This project is designed to process customer orders from an Excel sheet using the OpenAI GPT API. The README file provides detailed instructions on how to setup and use this project.\n\nHere's a summary of the steps:\n\n1. **Clone the repository:** This step involves copying the project from the remote repository to the local machine. The command `git clone https://github.com/your-username/AIBoostedOrderProcessing.git` is used to clone the repository. The user needs to replace `your-username` with their actual GitHub username.\n\n2. **Navigate to the repository:** The `cd AIBoostedOrderProcessing` command is used to change the current directory to the project's directory.\n\n3. **Create a virtual environment:** Python’s virtual environments are used to isolate project-specific dependencies from the global Python environment. The `python -m venv venv` command is used to create a new virtual environment named `venv`.\n\n4. **Activate the virtual environment:** This step involves activating the virtual environment that was just created. The command to activate the virtual environment varies based on the operating system.\n\n5. **Install the requirements:** The `pip install -r requirements.txt` command is used to install the Python dependencies required for this project. These dependencies are listed in the `requirements.txt` file.\n\n6. **Run the Script:** The `python src/aiBoostedOrderProcessor.py <OpenAI_API_KEY> <path_to_excel_file.xlsx>` command is used to run the script. Two command-line arguments are required: the OpenAI GPT API key and the path to the Excel file containing the customer orders.\n\nThe OpenAI GPT API is used to process the orders. Each row in the Excel file should have two columns: the first one for the customer's email address and the second one for their product order request in natural language.\n\nPlease note that this README does not provide any actual code or algorithms. It is a guide on how to setup and use the project. If you have any code snippets or files from this project, I would be happy to analyse those for you."
+            }
+          ],
+          "metadata": {
+            "outputType": "explainCode",
+            "details": []
+          }
+        },
+        {
+          "items": [
+            {
+              "mime": "text/markdown",
+              "data": "\n\n---\n\n### Boost Flow Diagram\n\nLast Updated: Tuesday, September 26, 2023 at 9:47:05 AM PDT\n\n```mermaid\ngraph TD;\nstyle Start fill:#228B22, stroke:#000000, stroke-width:2px;\nstyle CloneRepository fill:#228B22, stroke:#000000, stroke-width:2px;\nstyle NavigateRepository fill:#228B22, stroke:#000000, stroke-width:2px;\nstyle CreateVirtualEnvironment fill:#228B22, stroke:#000000, stroke-width:2px;\nstyle ActivateVirtualEnvironment fill:#228B22, stroke:#000000, stroke-width:2px;\nstyle InstallRequirements fill:#228B22, stroke:#000000, stroke-width:2px;\nstyle RunScript fill:#228B22, stroke:#000000, stroke-width:2px;\nstyle ExampleErrorPath fill:#B22222, stroke:#000000, stroke-width:2px;\n\nStart-->CloneRepository;\nCloneRepository-->NavigateRepository;\nNavigateRepository-->CreateVirtualEnvironment;\nCreateVirtualEnvironment-->ActivateVirtualEnvironment;\nActivateVirtualEnvironment-->InstallRequirements;\nInstallRequirements-->RunScript;\nRunScript-->ExampleErrorPath;\n```\n\nIn the above control flow graph, the primary path starts at the \"Start\" node and goes through the steps of cloning the repository, navigating to the repository, creating a virtual environment, activating the virtual environment, installing the requirements, and finally running the script.\n\nThe \"ExampleErrorPath\" represents the error path where an error occurs while running the script."
+            }
+          ],
+          "metadata": {
+            "outputType": "flowDiagram",
+            "details": []
+          }
+        },
+        {
+          "items": [
+            {
+              "mime": "text/markdown",
+              "data": "\n\n---\n\n### Boost Source-Level Security Analysis\n\nLast Updated: Tuesday, September 26, 2023 at 9:47:33 AM PDT\n\n1. **Severity**: 7/10\n\n   **Line Number**: 30\n\n   **Bug Type**: Sensitive Data Exposure\n\n   **Description**: The OpenAI API key is passed as a command-line argument. This can expose the key in system logs or to other users on the same system via commands like 'ps'.\n\n   **Solution**: Avoid passing sensitive data like API keys as command-line arguments. Instead, use environment variables or a secure configuration file. Refer to this resource for more information: https://owasp.org/www-project-cheat-sheets/cheatsheets/Protecting_API_Keys_in_a_Client_Side_JavaScript_Web_Application.html\n\n\n"
+            }
+          ],
+          "metadata": {
+            "outputType": "bugAnalysisList",
+            "details": [
+              {
+                "lineNumber": 30,
+                "severity": 7,
+                "bugType": "Sensitive Data Exposure",
+                "description": "The OpenAI API key is passed as a command-line argument. This can expose the key in system logs or to other users on the same system via commands like 'ps'.",
+                "solution": "Avoid passing sensitive data like API keys as command-line arguments. Instead, use environment variables or a secure configuration file. Refer to this resource for more information: https://owasp.org/www-project-cheat-sheets/cheatsheets/Protecting_API_Keys_in_a_Client_Side_JavaScript_Web_Application.html"
+              }
+            ]
+          }
+        },
+        {
+          "items": [
+            {
+              "mime": "text/markdown",
+              "data": "\n\n---\n\n### Boost Source-Level Performance Analysis\n\nLast Updated: Tuesday, September 26, 2023 at 9:48:28 AM PDT\n\n**No bugs found**"
+            }
+          ],
+          "metadata": {
+            "outputType": "performanceList",
+            "details": {}
+          }
+        },
+        {
+          "items": [
+            {
+              "mime": "application/vnd.code.notebook.error",
+              "data": "{\"name\":\"Error\",\"message\":\"Boost Data and Privacy Compliance Analysis failed: Unable to process this source code. This can be caused by a temporary issue with the Boost Cloud Service, or by an issue in the source input. Please try again, and if the problem persists, please contact Boost Support.\"}"
+            }
+          ],
+          "metadata": {
+            "outputType": "complianceCodeList",
+            "details": {}
+          }
+        }
+      ],
+      "languageId": "markdown",
+      "id": "0",
+      "value": "# AI Boosted Order Processing\n\nThis tool processes customer orders from an Excel sheet using the OpenAI GPT API.\n\n## Setup\n\n1. Clone the repository:\n```bash\ngit clone https://github.com/your-username/AIBoostedOrderProcessing.git\n```\n\n2. Navigate to the repository:\n```bash\ncd AIBoostedOrderProcessing\n```\n\n3. Create a virtual environment:\n```bash\npython -m venv venv\n```\n\n4. Activate the virtual environment:\n```bash\n# Windows:\nvenv\\Scripts\\activate\n\n# macOS and Linux:\nsource venv/bin/activate\n```\n\n5. Install the requirements:\n```bash\npip install -r requirements.txt\n```\n\n6. Run the Script:\n```\npython src/aiBoostedOrderProcessor.py <OpenAI_API_KEY> <path_to_excel_file.xlsx>\n```\n\n### Command-line Arguments:\n\n1. `OpenAI_API_KEY`: This is your OpenAI GPT API key. It's required for the script to interact with the OpenAI GPT API for processing the orders.\n\n2. `path_to_excel_file.xlsx`: This is the path to your Excel file containing the customer orders. Each row in the Excel file should have two columns: the first one for the customer's email address and the second one for their product order request in natural language.\n\n## Note\n\nEnsure you replace `your-username` in the `git clone` URL with your actual GitHub username.\nThis README provides a detailed step-by-step guide on setting up the project, installing dependencies, and running the script with the required command-line arguments.\n",
+      "kind": 2,
+      "metadata": {
+        "id": 0,
+        "type": "originalCode",
+        "lineNumberBase": 0
+      }
+    }
+  ],
+  "metadata": {
+    "defaultDir": ".boost",
+    "sourceFile": "./README.md"
+  }
+}

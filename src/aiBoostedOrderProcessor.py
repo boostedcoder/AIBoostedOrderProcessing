@@ -55,6 +55,7 @@ def process_order(email, order_request):
             "parameters": {
                     "type": "object",
                     "properties": {
+                    
                         "customer_email": { "type": "string", "description": "Well formed email of the customer or empty if unknown"},
                         "product_name": { "type": "string", "description": "Short product description or empty if unknown"},
                         "quantity": { "type": "integer", "description": "The count of the product"},
@@ -107,7 +108,7 @@ def main():
 
     openai.api_key = args.api_key
 
-    for index, row in df.iterrows():
+    for _index, row in df.iterrows():
         response = process_order(row['email'], row['order'])
         try:
             structured_data = json.loads(response)
